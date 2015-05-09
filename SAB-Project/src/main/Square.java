@@ -1,3 +1,4 @@
+package main; 
 
 public class Square {
 
@@ -5,9 +6,7 @@ public class Square {
 
 
 	public Square(){
-
 		sticks = new Stick[4];
-
 	}
 
 	public void addStick(Stick stick){
@@ -22,5 +21,4 @@ public class Square {
 		}
 		sticks[i] = stick;
 	}
-
 }

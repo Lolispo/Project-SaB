@@ -1,19 +1,20 @@
+package main;
 
 public class Stick {
 
 	private boolean visible;
+	private boolean chosen;
 	
 	
 	public Stick(){
-		
 		visible = false;
 	}
 	
-	
 	public void place(){
-		
-		visible = true;
-		
+		if(!chosen){
+			visible = true;
+			chosen = true;
+			//Graphic change
+		}
 	}
-	
 }
