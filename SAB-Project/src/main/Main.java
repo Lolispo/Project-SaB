@@ -2,6 +2,22 @@ package main;
 
 import javax.swing.*;
 
+/**
+ * Skriva ut sticks, hur spara
+ * Grafik:
+ *  - Meny och spel bakgrund
+ *  - Sticks och annat
+ *  - Rita ut game (relyar på annan fix)
+ * Bra Design för spel (Grid + annat?)
+ * Meny knappar
+ *  - Play exit
+ * Sticks kopplat till grafik!
+ * 
+ * 
+ * 
+ * @author Petter & Jonas
+ *
+ */
 public class Main {
 
 	private JFrame frame;
