@@ -21,7 +21,7 @@ public class Main {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.pack();
+		//frame.pack();
 		frame.repaint();
 		
 		//JOptionPane.showMessageDialog(frame, "HI THERE", "Billy", 1);
