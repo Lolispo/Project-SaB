@@ -23,5 +23,4 @@ public class Field {
 	public JPanel getPanel(){
 		return panel;
 	}
-	
 }
