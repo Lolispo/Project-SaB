@@ -46,7 +46,7 @@ public class Menu {
 	}
 
 	public void setComponent(){
-		imageComponent = new PictureCreateClass("/home/pettea/git/Project-SaB/SAB-Project/SticksAndBoxes.png");
+		imageComponent = new PictureCreateClass("SticksAndBoxes.png"); //"/home/pettea/git/Project-SaB/SAB-Project/"
 	}
 
 	public PictureCreateClass getComponent(){
