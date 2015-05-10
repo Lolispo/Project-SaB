@@ -8,19 +8,20 @@ public class Stick {
 	private Square B;
 
 	public Stick(Square A, Square B){
-		A = this.A;
-		B = this.B;
+		this.A = A;
+		this.B = B;
 		visible = false;
+		//System.out.println("Bug finder:\nA = " + A + "\nB = "+B);
 		A.addStick(this);
 		B.addStick(this);
 
 	}
 	public Stick(Square A){
 
-		A = this.A;
-		B = this.A;
+		this.A = A;
+		this.B = A;
 		visible = false;
-
+		A.addStick(this);
 	}
 
 	public void place(){
