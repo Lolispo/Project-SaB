@@ -31,8 +31,7 @@ public class Main {
 		Menu m = new Menu();
 		
 		frame.setContentPane(m.getComponent());
-		
-		frame.setSize(400,400);
+		frame.setSize(600,600);
 		frame.setTitle("Sticks and Boxes");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +42,16 @@ public class Main {
 		//JOptionPane.showMessageDialog(frame, "HI THERE", "Billy", 1);
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		Field f = new Field(amount);
+		JPanel contentPane = (JPanel) frame.getContentPane();
+		JPanel j = new JPanel();
+		j.add(f.getComponent());
 		
+		contentPane.removeAll();
+		contentPane.add(j);
+		contentPane.revalidate(); 
+		contentPane.repaint();
+//		frame.setContentPane(f.getComponent());
+	//	frame.repaint();
 	}
 	
 }

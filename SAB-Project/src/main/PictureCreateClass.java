@@ -7,20 +7,23 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PictureCreateClass extends JComponent{
+	
 	private BufferedImage image;
-
-	public PictureCreateClass() {
+	private String URL;
+	
+	public PictureCreateClass(String URL) {
 		
-		System.out.println(System.getProperty("user.dir"));
+		this.URL = URL;
+		//System.out.println(System.getProperty("user.dir"));
 
 		try {                
-			image = ImageIO.read(new File("/home/pettea/git/Project-SaB/SAB-Project/test.jpg")); //C:\\abcfolder\\textfile.txt
+			image = ImageIO.read(new File(URL)); //C:\\abcfolder\\textfile.txt
 		} catch(FileNotFoundException e){
 			JOptionPane.showMessageDialog(new JFrame(), "File not found");
 			e.printStackTrace();
 		}
 		catch (IOException e) {
-			JOptionPane.showMessageDialog(new JFrame(), "Error: " + e + "\nReading /home/Dropbox/test.jpg");
+			JOptionPane.showMessageDialog(new JFrame(), "Error: " + e + "\nReading " + URL);
 			e.printStackTrace();
 		}
 	}
@@ -35,4 +38,8 @@ public class PictureCreateClass extends JComponent{
 		return image;
 	}
 
+	public String getURL(){
+		return URL;
+	}
+	
 }

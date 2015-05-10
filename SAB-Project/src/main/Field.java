@@ -5,18 +5,16 @@ import javax.swing.*;
 public class Field {
 
 	private int circles;
-	private JPanel panel;
+	private PictureCreateClass imageComponent;
 	private Square[][] planets;
 	private int amountRow;
 
 	public Field(int amountRow){
 		amountRow = this.amountRow;
 		circles = amountRow * amountRow;
-		makePanel();
-
+		setComponent();
+		check();
 		planets = makePlanets();
-
-
 	}
 
 	public Square[][] makePlanets(){
@@ -53,19 +51,16 @@ public class Field {
 
 	}
 
-
-
-
-	public void makePanel(){
-		panel = new JPanel();
-		//ImageIcon
-		//JImage 
-
-		//panel.add();
+	public void setComponent(){
+		imageComponent = new PictureCreateClass("/home/pettea/git/Project-SaB/SAB-Project/Universe.png");
 	}
 
-	public JPanel getPanel(){
-		return panel;
+	public PictureCreateClass getComponent(){
+		return imageComponent;
+	}
+	
+	public void check(){
+		System.out.println(imageComponent.getURL());
 	}
 
 }

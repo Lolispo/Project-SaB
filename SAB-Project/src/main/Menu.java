@@ -7,25 +7,19 @@ import javax.swing.*;
 
 public class Menu {
 	
-	private BufferedImage background;
-	private PictureCreateClass pcc;
+	private PictureCreateClass imageComponent;
 	
 	
 	public Menu(){
-		setWindow();
+		setComponent();
 	}
 	
-	public void setWindow(){
-		pcc = new PictureCreateClass();
-		background = pcc.getImage();
-	}
-	
-	public BufferedImage getWindow(){
-		return background;
+	public void setComponent(){
+		imageComponent = new PictureCreateClass("/home/pettea/git/Project-SaB/SAB-Project/SticksAndBoxes.png");
 	}
 	
 	public PictureCreateClass getComponent(){
-		return pcc;
+		return imageComponent;
 	}
 	
 }
