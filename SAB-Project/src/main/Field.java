@@ -13,7 +13,7 @@ public class Field {
 	private ArrayList<Stick> sticks;
 	private ArrayList<Square> taken;
 	private JFrame frame;
-	
+
 	public Field(int amountRow, JFrame frame){
 		this.frame = frame;
 
@@ -25,20 +25,20 @@ public class Field {
 		makeSticks();
 		drawSticks();
 	}
-	
+
 	public void setBackground(){
 		setComponent();
 		check();
-		
+
 	}
 
 	public Square[][] makePlanets(){
 
-	//	frame.setLayout(new GridLayout(amountRow,amountRow));
-//		frame.add(new JButton("Hi"));
+		//	frame.setLayout(new GridLayout(amountRow,amountRow));
+		//		frame.add(new JButton("Hi"));
 		Graphics g = frame.getGraphics();
 		g.setColor(Color.RED);
-		
+
 		planets = new Square[amountRow][amountRow];
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
@@ -49,9 +49,9 @@ public class Field {
 		}
 		return planets;
 	}
-	
+
 	public void makeSticks(){
-		
+
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if ( (j+1) != amountRow){
@@ -77,12 +77,47 @@ public class Field {
 	public void drawSticks(){
 		Graphics g = frame.getGraphics();
 		g.setColor(Color.BLUE);
-		
+
 		for(Stick stick : sticks){
 			Square A = stick.getA();
 			Square B = stick.getB();
 			if(A.getX() == B.getX() && A.getY() == B.getY()){ // Kollar sig själv
-				// Kolla sig själv fix
+				for(Stick innerStick : A.getSticks()){
+					if(innerStick.getX() != 0 && innerStick.getY() != 0){
+						int localX = 0;
+						int localY = 0;
+						if(innerStick.getX() == A.getX()){
+							localX = A.getX();
+							if(A.getY() < innerStick.getY()){
+								localY = A.getY() - (innerStick.getY() - A.getY()) ;
+							}
+							else if(A.getY() > innerStick.getY()){
+								localY = innerStick.getY() - (A.getY() - innerStick.getY());
+							}
+						}
+						else if(innerStick.getY() == A.getY()){
+							localY = A.getY();
+							if(A.getX() < innerStick.getX()){
+								localX = A.getX() - (innerStick.getX() - A.getX());
+							}
+							else if(A.getX() > innerStick.getX()){
+								localX = innerStick.getX() - (A.getX() - innerStick.getX());
+							}
+						}
+						boolean alreadyExists = false;
+						for(Stick moreInnerStick : A.getSticks()){
+							if(moreInnerStick.getX() == localX && moreInnerStick.getY() == localY){
+								alreadyExists = true;
+								break;
+							}
+						}
+						if(!alreadyExists){ // Om den inte finns
+							stick.setX(localX);
+							stick.setY(localY);
+							break;
+						}
+					}
+				}
 			}
 			else if(A.getX() == B.getX()){
 				stick.setX(A.getX());
@@ -102,31 +137,30 @@ public class Field {
 					stick.setX((A.getX() - B.getX())/2 + B.getX());
 				}
 			}
-			frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
+
+			if(stick.getX() != 0){
+				frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
+				g.fillOval(stick.getX(), stick.getY(), 40, 40);
+			}
 		}
 	}
-	
-	
+
+
 	public ArrayList<Square> checkIfSurroundend(){
 		ArrayList<Square> surroundedSquares = new ArrayList<Square>(); 
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if(planets[i][j].surrounded()==true && taken.contains(planets[i][j]) == false){
-				taken.add(planets[i][j]);
-				surroundedSquares.add(planets[i][j]);
+					taken.add(planets[i][j]);
+					surroundedSquares.add(planets[i][j]);
+				}
 			}
 		}
-	}
 		return surroundedSquares;
 
 	}
-	
-	public boolean checkIfGameOver(){
-		if( taken.size() == circles){
-			return true;
-		}
-		return false;
-	}
+
+
 
 
 	public void setComponent(){
