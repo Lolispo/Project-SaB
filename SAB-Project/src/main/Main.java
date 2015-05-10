@@ -46,7 +46,8 @@ public class Main {
 		JPanel panelButtons = new JPanel();
 		for(JButton button : buttons){
 			panelButtons.add(button);
-		}		
+		}
+		panelButtons.setBackground(Color.BLACK);
 		frame.add(panelButtons, BorderLayout.SOUTH);
 		frame.revalidate();
 		frame.repaint();
