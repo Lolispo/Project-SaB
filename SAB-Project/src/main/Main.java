@@ -33,7 +33,8 @@ public class Main {
 		frame.setTitle("Sticks and Boxes");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setResizable(false);
+		
 		Menu m = new Menu(frame);
 		frame.getContentPane().add(m.getComponent());
 		frame.validate();
