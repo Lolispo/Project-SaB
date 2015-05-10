@@ -8,8 +8,11 @@ public class Field {
 	private PictureCreateClass imageComponent;
 	private Square[][] planets;
 	private int amountRow;
+	private Stick[] sticks;
 
 	public Field(int amountRow){
+		
+		sticks = new Stick[(amountRow+1)^2];
 		amountRow = this.amountRow;
 		circles = amountRow * amountRow;
 		setComponent();
@@ -30,7 +33,7 @@ public class Field {
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if (planets[i][j+1] != null){
-					new Stick(planets[i][j], planets[i][j+1]);
+			    	new Stick(planets[i][j], planets[i][j+1]);
 				}
 				if(planets[i+1][j]	!= null){
 					new Stick(planets[i][j], planets[i+1][j]);
@@ -50,6 +53,8 @@ public class Field {
 		return planets;
 
 	}
+	
+	
 
 	public void setComponent(){
 		imageComponent = new PictureCreateClass("/home/pettea/git/Project-SaB/SAB-Project/Universe.png");
