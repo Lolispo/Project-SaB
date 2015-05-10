@@ -7,31 +7,33 @@ public class Play {
 	private Player playerOne;
 	private Player playerTwo;
 	private Field field;
-	private Player turn;
+	private Player turnPlayer;
 	private JFrame frame;
 	private boolean gameOver;
 
 	public Play(JFrame frame){
 		this.frame = frame;
 		gameOver = false;
-		turn = playerOne;
+		turnPlayer = playerOne;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		field = new Field(amount, frame);
 		while (gameOver == false){
-			PlayTurn(turn);
+			PlayTurn(turnPlayer);
 		}
+		//Display a game over screen!
+		//Rematch and return to main menu.
 	}
 
-	public void PlayTurn(Player currentPlayer){
-		field.checkIfSurroundend().size();
-		currentPlayer.addPoints(field.checkIfSurroundend().size());
+	public void PlayTurn(Player turnPlayer){
 		
-		if(turn == playerOne){
-			turn = playerTwo;
+		turnPlayer.play(field);
+		gameOver = field.checkIfGameOver();
+		if(turnPlayer == playerOne){
+			turnPlayer = playerTwo;
 		}
 		
 		else {
-			turn = playerOne;
+			turnPlayer = playerOne;
 		}
 	}
 }
