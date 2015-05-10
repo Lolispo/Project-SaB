@@ -47,18 +47,6 @@ public class Main {
 
 		//frame.pack();
 		frame.repaint();
-
-
-		//JOptionPane.showMessageDialog(frame, "HI THERE", "Billy", 1);
-		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
-		Field f = new Field(amount);
-		frame.getContentPane().removeAll();
-		frame.getContentPane().add(f.getComponent());
-		frame.getContentPane().revalidate();
-		frame.getContentPane().repaint();
-		//	frame.repaint();
-
-
 	}
 
 }

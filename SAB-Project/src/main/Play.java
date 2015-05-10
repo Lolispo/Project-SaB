@@ -14,19 +14,13 @@ public class Play {
 		gameOver = false;
 		int turn = 1;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
-		Field field = new Field(amount);
-
+		field = new Field(amount, frame);
 		while (gameOver == false){
 			PlayTurn(turn);
 		}
-
 	}
 
-
-
 	public void PlayTurn(int i){
-
-
 		ArrayList<Square> surrounded = field.checkIfSurroundend();
 
 		if(turn == 1){
@@ -35,11 +29,5 @@ public class Play {
 		if(turn ==2){
 			turn = 1;
 		}
-
 	}
-
-
-
-
-
 }
