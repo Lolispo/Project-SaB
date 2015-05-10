@@ -29,7 +29,7 @@ public class Main {
 	
 	public Main(){
 		frame = new JFrame();
-		Menu m = new Menu();
+		Menu m = new Menu(frame);
 		
 		frame.getContentPane().add(m.getComponent());
 		frame.setSize(600,600);

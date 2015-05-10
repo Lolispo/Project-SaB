@@ -6,8 +6,10 @@ public class Play {
 
 	private Field field;
 	private int turn;
+	private JFrame frame;
 
-	public Play(){
+	public Play(JFrame frame){
+		this.frame = frame;
 		int turn = 1;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		Field field = new Field(amount);
