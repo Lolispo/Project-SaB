@@ -3,7 +3,7 @@ package main;
 public class Square {
 
 	private Stick[] sticks;
-
+	private int numberOfSticks;
 
 	public Square(){
 		sticks = new Stick[4];
@@ -20,5 +20,11 @@ public class Square {
 
 		}
 		sticks[i] = stick;
+		numberOfSticks++;
+	}
+	
+	public int nmbSticks(){
+		return numberOfSticks;
+		
 	}
 }

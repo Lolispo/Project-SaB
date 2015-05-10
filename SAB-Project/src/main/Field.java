@@ -6,47 +6,70 @@ public class Field {
 
 	private int circles;
 	private JPanel panel;
-	private Square[] planets;
+	private Square[][] planets;
 	private int amountRow;
 
 	public Field(int amountRow){
 		amountRow = this.amountRow;
 		circles = amountRow * amountRow;
 		makePanel();
-		
-		planets = makePlanets(circles);
-		
+		package main;
 
-	}
-	
-	public Square[] makePlanets(int circles){
-		
-		planets = new Square[circles];
-		
-		int connectedSticks =(amountRow-1)*amountRow*2;
-		int unConnectedSticks = (amountRow+1)^2 -connectedSticks;
-		
-		Square[] fourConnects = new Square[(amountRow-1)^2]; 
-		Square[] threeConnects = new Square [circles - (amountRow-1)^2 - 4];
-		Square[] twoConnects = new Square[4];
+		import javax.swing.*;
 
-		for(int i = 0; i<fourConnects.length; i++){
-			fourConnects[i] = new Square();
-		}
-		
-		for(int i = 0; i<threeConnects.length; i++){
-			threeConnects[i] = new Square();
-		}
-		for(int i = 0; i<twoConnects.length; i++){
-			twoConnects[i] = new Square();
-		}
-		
-		
-		
-		
-		return planets;
-		
-	}
+		public class Field {
+
+			private int circles;
+			private JPanel panel;
+			private Square[][] planets;
+			private int amountRow;
+
+			public Field(int amountRow){
+				amountRow = this.amountRow;
+				circles = amountRow * amountRow;
+				makePanel();
+
+				planets = makePlanets();
+
+
+			}
+
+			public Square[][] makePlanets(){
+
+				planets = new Square[amountRow][amountRow];
+				for(int i = 0; i < amountRow; i++){
+					for(int j = 0; j<amountRow; j++){
+						planets[i][j] = new Square();
+					}
+				}
+
+
+				for(int i = 0; i < amountRow; i++){
+					for(int j = 0; j<amountRow; j++){
+						if (planets[i][j+1] != null){
+							new Stick(planets[i][j], planets[i][j+1]);
+						}
+						if(planets[i+1][j]	!= null){
+							new Stick(planets[i][j], planets[i+1][j]);
+						}
+
+						if((i==0 && j == 0) || (i==0 && j==amountRow) || (i==amountRow && j == 0) || (i==amountRow && j == amountRow)){
+							new Stick(planets[i][j]);
+							new Stick(planets[i][j]);
+
+						}
+						while(planets[i][j].nmbSticks()<4){
+							new Stick(planets[i][j]);
+						}
+					}
+				}
+
+				return planets;
+
+			}
+			
+			
+
 
 	public void makePanel(){
 		panel = new JPanel();

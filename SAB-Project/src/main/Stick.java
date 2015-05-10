@@ -4,12 +4,25 @@ public class Stick {
 
 	private boolean visible;
 	private boolean chosen;
-	
-	
-	public Stick(){
+	private Square A;
+	private Square B;
+
+	public Stick(Square A, Square B){
+		A = this.A;
+		B = this.B;
 		visible = false;
+		A.addStick(this);
+		B.addStick(this);
+
 	}
-	
+	public Stick(Square A){
+
+		A = this.A;
+		B = this.A;
+		visible = false;
+
+	}
+
 	public void place(){
 		if(!chosen){
 			visible = true;
