@@ -22,7 +22,7 @@ public class Stick {
 		visible = false;
 
 	}
-
+//heyhey
 	public void place(){
 		if(!chosen){
 			visible = true;
