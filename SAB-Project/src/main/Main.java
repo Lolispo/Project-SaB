@@ -29,13 +29,16 @@ public class Main {
 
 	public Main(){
 		frame = new JFrame();
-		Menu m = new Menu(frame);
-		frame.getContentPane().add(m.getComponent());
 		frame.setSize(600,600);
 		frame.setTitle("Sticks and Boxes");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		Menu m = new Menu(frame);
+		frame.getContentPane().add(m.getComponent());
+		frame.validate();
+		frame.repaint();
+		
 		JButton[] buttons = m.getButtons();
 		frame.setLayout(new BorderLayout());
 
@@ -44,8 +47,7 @@ public class Main {
 			panelButtons.add(button);
 		}		
 		frame.add(panelButtons, BorderLayout.SOUTH);
-
-		//frame.pack();
+		frame.revalidate();
 		frame.repaint();
 	}
 
