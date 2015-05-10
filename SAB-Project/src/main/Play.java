@@ -4,15 +4,17 @@ import javax.swing.*;
 
 public class Play {
 
+	private Player playerOne;
+	private Player playerTwo;
 	private Field field;
-	private int turn;
+	private Player turn;
 	private JFrame frame;
 	private boolean gameOver;
 
 	public Play(JFrame frame){
 		this.frame = frame;
 		gameOver = false;
-		int turn = 1;
+		turn = playerOne;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		field = new Field(amount, frame);
 		while (gameOver == false){
@@ -20,14 +22,16 @@ public class Play {
 		}
 	}
 
-	public void PlayTurn(int i){
-		ArrayList<Square> surrounded = field.checkIfSurroundend();
-
-		if(turn == 1){
-			turn = 2;
+	public void PlayTurn(Player currentPlayer){
+		field.checkIfSurroundend().size();
+		currentPlayer.addPoints(field.checkIfSurroundend().size());
+		
+		if(turn == playerOne){
+			turn = playerTwo;
 		}
-		if(turn ==2){
-			turn = 1;
+		
+		else {
+			turn = playerOne;
 		}
 	}
 }

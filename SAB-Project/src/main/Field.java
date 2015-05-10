@@ -123,12 +123,17 @@ public class Field {
 		ArrayList<Square> surroundedSquares = new ArrayList<Square>(); 
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
-				if(planets[i][j].surrounded()==true);
+				if(planets[i][j].surrounded()==true && taken.contains(planets[i][j]) == false){
+				taken.add(planets[i][j]);
 				surroundedSquares.add(planets[i][j]);
 			}
 		}
-		return surroundedSquares;
 	}
+		return surroundedSquares;
+
+	}
+	
+	
 
 
 	public void setComponent(){
