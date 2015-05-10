@@ -92,7 +92,7 @@ public class Field {
 								localY = A.getY() - (innerStick.getY() - A.getY()) ;
 							}
 							else if(A.getY() > innerStick.getY()){
-								localY = innerStick.getY() - (A.getY() - innerStick.getY());
+								localY = A.getY() + (A.getY() - innerStick.getY());
 							}
 						}
 						else if(innerStick.getY() == A.getY()){
@@ -101,7 +101,7 @@ public class Field {
 								localX = A.getX() - (innerStick.getX() - A.getX());
 							}
 							else if(A.getX() > innerStick.getX()){
-								localX = innerStick.getX() - (A.getX() - innerStick.getX());
+								localX = A.getX() + (A.getX() - innerStick.getX());
 							}
 						}
 						boolean alreadyExists = false;
