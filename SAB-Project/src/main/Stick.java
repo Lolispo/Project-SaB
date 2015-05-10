@@ -34,4 +34,12 @@ public class Stick {
 	public boolean isVisible(){
 		return visible;
 	}
+	
+	public Square getA(){
+		return A;
+	}
+	public Square getB(){
+		return B;
+	}
 }
+

@@ -1,5 +1,6 @@
 package main;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -33,6 +34,8 @@ public class Field {
 
 	public Square[][] makePlanets(){
 
+	//	frame.setLayout(new GridLayout(amountRow,amountRow));
+//		frame.add(new JButton("Hi"));
 		Graphics g = frame.getGraphics();
 		g.setColor(Color.RED);
 		
@@ -40,7 +43,8 @@ public class Field {
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
-				g.fillOval(75+200*i, 75+200*j, 60, 60);
+				planets[i][j].setCoordinates(i,j);
+				g.fillOval(planets[i][j].getX(),planets[i][j].getY(), 60, 60);
 			}
 		}
 		return planets;
@@ -74,6 +78,42 @@ public class Field {
 		Graphics g = frame.getGraphics();
 		g.setColor(Color.BLUE);
 		
+		for(Stick stick : sticks){
+			stick.getA().getX();
+		}
+		
+		
+		JComponent jc = new PictureCreateClass("");
+		jc.addMouseListener(new MouseListener(){
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		
 	}
