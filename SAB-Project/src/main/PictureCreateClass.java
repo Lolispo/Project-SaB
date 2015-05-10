@@ -10,10 +10,14 @@ public class PictureCreateClass extends JComponent{
 
 	private BufferedImage image;
 	private String URL;
+	private int X;
+	private int Y;
 
-	public PictureCreateClass(String URL) {
+	public PictureCreateClass(String URL, int x, int y) {
 
 		this.URL = URL;
+		X = x;
+		Y = y;
 		//System.out.println(System.getProperty("user.dir"));
 
 		try {                
@@ -31,7 +35,7 @@ public class PictureCreateClass extends JComponent{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(image, 0, 0, this);
+		g.drawImage(image, X, Y, this);
 	}
 
 	public BufferedImage getImage(){

@@ -79,43 +79,31 @@ public class Field {
 		g.setColor(Color.BLUE);
 		
 		for(Stick stick : sticks){
-			stick.getA().getX();
+			Square A = stick.getA();
+			Square B = stick.getB();
+			if(A.getX() == B.getX() && A.getY() == B.getY()){ // Kollar sig själv
+				// Kolla sig själv fix
+			}
+			else if(A.getX() == B.getX()){
+				stick.setX(A.getX());
+				if(A.getY() < B.getY()){
+					stick.setY((B.getY() - A.getY())/2 + A.getY());
+				}
+				else if(B.getY() < A.getY()){
+					stick.setY((A.getY() - B.getY())/2 + B.getY());
+				}
+			}
+			else if(A.getY() == B.getY()){
+				stick.setY(A.getY());
+				if(A.getX() < B.getX()){
+					stick.setX((B.getX() - A.getX())/2 + A.getX());
+				}
+				else if(B.getX() < A.getX()){
+					stick.setX((A.getX() - B.getX())/2 + B.getX());
+				}
+			}
+			frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
 		}
-		
-		
-		JComponent jc = new PictureCreateClass("");
-		jc.addMouseListener(new MouseListener(){
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		
-		
 	}
 	
 	
@@ -132,7 +120,7 @@ public class Field {
 
 
 	public void setComponent(){
-		imageComponent = new PictureCreateClass("Universe.png"); //"/home/pettea/git/Project-SaB/SAB-Project/"
+		imageComponent = new PictureCreateClass("Universe.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
 	}
 
 	public PictureCreateClass getComponent(){
