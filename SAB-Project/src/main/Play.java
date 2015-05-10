@@ -1,5 +1,5 @@
 package main;
-
+import java.util.*;
 import javax.swing.*;
 
 public class Play {
@@ -22,16 +22,8 @@ public class Play {
 	public void PlayTurn(int i){
 
 
-		field.
+		ArrayList<Square> surrounded = field.checkIfSurroundend();
 
-		
-		
-		
-		
-		
-		
-		
-		
 		if(turn == 1){
 			turn = 2;
 		}

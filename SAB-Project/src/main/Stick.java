@@ -30,4 +30,7 @@ public class Stick {
 			//Graphic change
 		}
 	}
+	public boolean isVisible(){
+		return visible;
+	}
 }

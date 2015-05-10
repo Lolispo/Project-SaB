@@ -27,4 +27,15 @@ public class Square {
 		return numberOfSticks;
 		
 	}
+	
+	public boolean surrounded(){
+		
+		for(Stick stick: sticks){
+			if(stick.isVisible() == false)
+				return false;
+		}
+		
+		return true;
+		
+	}
 }
