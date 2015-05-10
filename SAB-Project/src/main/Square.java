@@ -22,20 +22,20 @@ public class Square {
 		sticks[i] = stick;
 		numberOfSticks++;
 	}
-	
+
 	public int nmbSticks(){
 		return numberOfSticks;
-		
+
 	}
-	
+
 	public boolean surrounded(){
-		
+
 		for(Stick stick: sticks){
 			if(stick.isVisible() == false)
 				return false;
 		}
-		
+
 		return true;
-		
+
 	}
 }

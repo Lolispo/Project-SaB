@@ -6,14 +6,17 @@ public class Play {
 
 	private Field field;
 	private int turn;
+	private boolean gameOver;
 
 	public Play(){
+		gameOver = false;
 		int turn = 1;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		Field field = new Field(amount);
 
-		PlayTurn(turn);
-
+		while (gameOver == false){
+			PlayTurn(turn);
+		}
 
 	}
 
@@ -23,6 +26,8 @@ public class Play {
 
 
 		ArrayList<Square> surrounded = field.checkIfSurroundend();
+
+
 
 		if(turn == 1){
 			turn = 2;

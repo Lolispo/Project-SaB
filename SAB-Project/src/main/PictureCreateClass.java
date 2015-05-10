@@ -7,12 +7,12 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PictureCreateClass extends JComponent{
-	
+
 	private BufferedImage image;
 	private String URL;
-	
+
 	public PictureCreateClass(String URL) {
-		
+
 		this.URL = URL;
 		//System.out.println(System.getProperty("user.dir"));
 
@@ -41,5 +41,5 @@ public class PictureCreateClass extends JComponent{
 	public String getURL(){
 		return URL;
 	}
-	
+
 }

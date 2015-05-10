@@ -12,9 +12,9 @@ public class Field {
 	private ArrayList<Square> taken;
 
 	public Field(int amountRow){
-		
+
 		sticks =  new ArrayList<Stick>();
-		amountRow = this.amountRow;
+		this.amountRow = amountRow;
 		circles = amountRow * amountRow;
 		setComponent();
 		check();
@@ -34,8 +34,8 @@ public class Field {
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if (planets[i][j+1] != null){
-			    	sticks.add(new Stick(planets[i][j], planets[i][j+1]));
-			    	
+					sticks.add(new Stick(planets[i][j], planets[i][j+1]));
+
 				}
 				if(planets[i+1][j]	!= null){
 					sticks.add(new Stick(planets[i][j], planets[i+1][j]));
@@ -55,7 +55,7 @@ public class Field {
 		return planets;
 
 	}
-	
+
 	public ArrayList<Square> checkIfSurroundend(){
 		ArrayList<Square> surroundedSquares = new ArrayList<Square>(); 
 		for(int i = 0; i < amountRow; i++){
@@ -66,7 +66,7 @@ public class Field {
 		}
 		return surroundedSquares;
 	}
-	
+
 
 	public void setComponent(){
 		imageComponent = new PictureCreateClass("/home/pettea/git/Project-SaB/SAB-Project/Universe.png");
@@ -75,7 +75,7 @@ public class Field {
 	public PictureCreateClass getComponent(){
 		return imageComponent;
 	}
-	
+
 	public void check(){
 		System.out.println(imageComponent.getURL());
 	}
