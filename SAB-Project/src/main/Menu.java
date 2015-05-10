@@ -51,7 +51,7 @@ public class Menu {
 	}
 
 	public void setComponent(){
-		imageComponent = new PictureCreateClass("SticksAndBoxes.png"); //"/home/pettea/git/Project-SaB/SAB-Project/"
+		imageComponent = new PictureCreateClass("SticksAndBoxes.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
 	}
 
 	public PictureCreateClass getComponent(){
@@ -60,7 +60,7 @@ public class Menu {
 
 	public void goPlay(){
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(new PictureCreateClass("Universe.png"));
+		frame.getContentPane().add(new PictureCreateClass("Universe.png",0,0));
 		frame.revalidate();
 		frame.repaint();
 		play = new Play(frame);
@@ -72,7 +72,7 @@ public class Menu {
 
 	public void options(){
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(new PictureCreateClass("Universe.png"));
+		frame.getContentPane().add(new PictureCreateClass("Universe.png",0,0));
 		frame.revalidate();
 		frame.repaint();		
 	}

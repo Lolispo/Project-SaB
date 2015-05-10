@@ -6,6 +6,8 @@ public class Stick {
 	private boolean chosen;
 	private Square A;
 	private Square B;
+	private int X;
+	private int Y;
 
 	public Stick(Square A, Square B){
 		this.A = A;
@@ -40,6 +42,20 @@ public class Stick {
 	}
 	public Square getB(){
 		return B;
+	}
+	
+	public void setX(int x){
+		X = x;
+	}
+	public void setY(int y){
+		Y = y;
+	}
+	
+	public int getX(){
+		return X;
+	}
+	public int getY(){
+		return Y;
 	}
 }
 
