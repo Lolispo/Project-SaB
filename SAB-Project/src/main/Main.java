@@ -37,6 +37,15 @@ public class Main {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		JButton[] buttons = m.getButtons();
+		frame.setLayout(new BorderLayout());
+		
+		JPanel panelButtons = new JPanel();
+		for(JButton button : buttons){
+			panelButtons.add(button);
+		}		
+		frame.add(panelButtons, BorderLayout.SOUTH);
+
 		//frame.pack();
 		frame.repaint();
 		
