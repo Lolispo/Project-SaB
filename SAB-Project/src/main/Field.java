@@ -121,7 +121,12 @@ public class Field {
 
 	}
 	
-	
+	public boolean checkIfGameOver(){
+		if( taken.size() == circles){
+			return true;
+		}
+		return false;
+	}
 
 
 	public void setComponent(){

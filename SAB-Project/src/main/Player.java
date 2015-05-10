@@ -1,5 +1,10 @@
 package main;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
 public class Player {
 
 	private int points;
@@ -23,4 +28,19 @@ public class Player {
 	}
 	
 	
+	public void play(Field field){
+		boolean endTurn = false;
+		while(endTurn == false)
+		JButton play = new JButton("Play");
+		play.addMouseListener(mouseListener l){
+			public void mouseClicked(MouseEvent e){
+				//*compononent*.place();
+			}
+		}
+		int a = field.checkIfSurroundend().size();
+		if(a==0){
+			endTurn = true;
+		}
+		addPoints(a);
+}
 }
