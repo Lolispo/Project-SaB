@@ -29,6 +29,11 @@ public class Menu {
 			}
 		});
 		JButton options = new JButton("Options");
+		options.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				options();
+			}
+		});
 		JButton exit = new JButton("Exit");
 		exit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -54,6 +59,10 @@ public class Menu {
 	}
 
 	public void goPlay(){
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(new PictureCreateClass("Universe.png"));
+		frame.revalidate();
+		frame.repaint();
 		play = new Play(frame);
 	}
 
@@ -61,6 +70,13 @@ public class Menu {
 		return play;
 	}
 
+	public void options(){
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(new PictureCreateClass("Universe.png"));
+		frame.revalidate();
+		frame.repaint();		
+	}
+	
 	public void exitGame(){
 		System.exit(1);
 	}

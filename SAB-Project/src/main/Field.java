@@ -15,6 +15,7 @@ public class Field {
 	
 	public Field(int amountRow, JFrame frame){
 		this.frame = frame;
+
 		setBackground();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
@@ -24,25 +25,20 @@ public class Field {
 	
 	public void setBackground(){
 		setComponent();
-		
-		frame.getContentPane().removeAll();
-		frame.setLayout(new GridLayout());
-		frame.getContentPane().add(getComponent());
-		frame.getContentPane().revalidate();
-		frame.getContentPane().repaint();
 		check();
+		
 	}
 
 	public Square[][] makePlanets(){
 
-		//Graphics g = frame.getGraphics();
-	//	g.setColor(Color.RED);
+		Graphics g = frame.getGraphics();
+		g.setColor(Color.RED);
 		
 		planets = new Square[amountRow][amountRow];
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
-				//g.fillOval(200+20*i, 200+20*j, 20, 20);
+				g.fillOval(200+20*i, 200+20*j, 20, 20);
 			}
 		}
 
