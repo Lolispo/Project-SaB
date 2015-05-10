@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Skriva ut sticks, hur spara
@@ -30,7 +31,7 @@ public class Main {
 		frame = new JFrame();
 		Menu m = new Menu();
 		
-		frame.setContentPane(m.getComponent());
+		frame.getContentPane().add(m.getComponent());
 		frame.setSize(600,600);
 		frame.setTitle("Sticks and Boxes");
 		frame.setVisible(true);
@@ -39,19 +40,17 @@ public class Main {
 		//frame.pack();
 		frame.repaint();
 		
+		
 		//JOptionPane.showMessageDialog(frame, "HI THERE", "Billy", 1);
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		Field f = new Field(amount);
-		JPanel contentPane = (JPanel) frame.getContentPane();
-		JPanel j = new JPanel();
-		j.add(f.getComponent());
-		
-		contentPane.removeAll();
-		contentPane.add(j);
-		contentPane.revalidate(); 
-		contentPane.repaint();
-//		frame.setContentPane(f.getComponent());
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(f.getComponent());
+		frame.getContentPane().revalidate();
+		frame.getContentPane().repaint();
 	//	frame.repaint();
+			
+			
 	}
 	
 }
