@@ -21,6 +21,8 @@ public class Field {
 		this.amountRow = amountRow;
 		circles = amountRow * amountRow;
 		planets = makePlanets();
+		makeSticks();
+		drawSticks();
 	}
 	
 	public void setBackground(){
@@ -38,15 +40,18 @@ public class Field {
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
-				g.fillOval(200+20*i, 200+20*j, 20, 20);
+				g.fillOval(75+200*i, 75+200*j, 60, 60);
 			}
 		}
-
+		return planets;
+	}
+	
+	public void makeSticks(){
+		
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if ( (j+1) != amountRow){
 					sticks.add(new Stick(planets[i][j], planets[i][j+1]));
-
 				}
 				if((i+1) != amountRow){
 					sticks.add(new Stick(planets[i][j], planets[i+1][j]));
@@ -63,11 +68,17 @@ public class Field {
 				}
 			}
 		}
-
-		return planets;
-
 	}
 
+	public void drawSticks(){
+		Graphics g = frame.getGraphics();
+		g.setColor(Color.BLUE);
+		
+		
+		
+	}
+	
+	
 	public ArrayList<Square> checkIfSurroundend(){
 		ArrayList<Square> surroundedSquares = new ArrayList<Square>(); 
 		for(int i = 0; i < amountRow; i++){
