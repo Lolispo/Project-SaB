@@ -29,13 +29,7 @@ public class Main {
 
 	public Main(){
 		frame = new JFrame();
-<<<<<<< HEAD
 		Menu m = new Menu(frame);
-		
-=======
-		Menu m = new Menu();
-
->>>>>>> refs/remotes/origin/master
 		frame.getContentPane().add(m.getComponent());
 		frame.setSize(600,600);
 		frame.setTitle("Sticks and Boxes");

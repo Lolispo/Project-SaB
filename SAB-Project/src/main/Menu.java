@@ -12,15 +12,10 @@ public class Menu {
 	private PictureCreateClass imageComponent;
 	private Play play;
 	private JButton[] buttonStorage;
-<<<<<<< HEAD
 	private JFrame frame;
 
 	public Menu(JFrame frame){
 		this.frame = frame;	
-=======
-
-	public Menu(){
->>>>>>> refs/remotes/origin/master
 		setComponent();
 		buttonStorage = new JButton[3];
 		makeButtons();
