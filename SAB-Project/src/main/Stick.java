@@ -21,7 +21,6 @@ public class Stick extends MouseAdapter{
 		//System.out.println("Bug finder:\nA = " + A + "\nB = "+B);
 		A.addStick(this);
 		B.addStick(this);
-		sideways = (A.getX()==X);	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.
 		if(sideways){
 			XLength = 145;
 			YLength = 87;
@@ -32,49 +31,63 @@ public class Stick extends MouseAdapter{
 		}
 
 	}
-	public Stick(Square A){
 
-		this.A = A;
-		this.B = A;
-		visible = false;
-		A.addStick(this);
-	}
+	
+		public Stick(Square A){
 
-	public void place(){
-		if(!chosen){
-			visible = true;
-			chosen = true;
-			//Graphic change
+			this.A = A;
+			this.B = A;
+			visible = false;
+			A.addStick(this);
 		}
-	}
-	public boolean isVisible(){
-		return visible;
-	}
 
-	public boolean sideways(){
-		return  sideways;	
-	}
+		public void place(){
+			if(!chosen){
+				visible = true;
+				chosen = true;
+				//Graphic change
+			}
+		}
+		
+		public void setSideways(){
+			if ((A.getX()==X)){
+				sideways = true;	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.
+				}
+				else{
+					sideways =false;
+				}
+		}
+		public boolean isVisible(){
+			return visible;
+		}
 
-	public Square getA(){
-		return A;
-	}
-	public Square getB(){
-		return B;
-	}
+		public boolean sideways(){
+			return  sideways;	
+		}
 
-	public void setX(int x){
-		X = x;
-	}
-	public void setY(int y){
-		Y = y;
-	}
+		public Square getA(){
+			return A;
+		}
+		public Square getB(){
+			return B;
+		}
 
-	public int getX(){
-		return X;
-	}
-	public int getY(){
-		return Y;
-	}
+		public void setX(int x){
+			X = x;
+		}
+		public void setY(int y){
+			Y = y;
+		}
+
+		public int getX(){
+			return X;
+		}
+		public int getY(){
+			return Y;
+		}
+
+	
+
 	//Hover stuff
 	@Override
 	public void mouseEntered(MouseEvent e){
