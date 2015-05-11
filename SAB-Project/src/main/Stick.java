@@ -11,6 +11,8 @@ public class Stick extends MouseAdapter{
 	private int X;
 	private int Y;
 	private boolean sideways;
+	private int XLength;
+	private int YLength;
 
 	public Stick(Square A, Square B) {
 		this.A = A;
@@ -20,7 +22,14 @@ public class Stick extends MouseAdapter{
 		A.addStick(this);
 		B.addStick(this);
 		sideways = (A.getX()==X);	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.
-
+		if(sideways){
+			XLength = 145;
+			YLength = 87;
+		}
+		else{
+			XLength = 87;
+			YLength = 145;
+		}
 
 	}
 	public Stick(Square A){
@@ -66,9 +75,15 @@ public class Stick extends MouseAdapter{
 	public int getY(){
 		return Y;
 	}
-
+	//Hover stuff
 	@Override
 	public void mouseEntered(MouseEvent e){
+		//87 145
+		if((e.getX() >= this.getX() && e.getX() <= (this.getX() + XLength)) && 
+				(e.getY() >= this.getY() && e.getY() <= (this.getY() + YLength))){
+			System.out.println("Stick: " + this.getX() + ","+this.getY());
+		}
+
 		//System.out.println("Entered " + e.getX() + " , " + e.getY() + " for stick: " + this.getX() + ", " + this.getY());
 	}
 
