@@ -52,7 +52,7 @@ public class Field {
 				planets[i][j] = new Square();
 				planets[i][j].setCoordinates(i,j);
 				//g.fillOval(planets[i][j].getX(),planets[i][j].getY(), 60, 60);
-				imageP.add(new PictureCreateClass("circle.png",planets[i][j].getX(),planets[i][j].getY()));				
+				imageP.add(new PictureCreateClass("circleFixed.png",planets[i][j].getX(),planets[i][j].getY()));				
 				//frame.getContentPane().add(new PictureCreateClass("circle.png",planets[i][j].getX(), planets[i][j].getY()));
 				frame.revalidate();
 				frame.repaint();
