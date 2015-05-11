@@ -13,6 +13,7 @@ public class Field {
 	private ArrayList<Stick> sticks;
 	private ArrayList<Square> taken;
 	private JFrame frame;
+	private ImagePanel imageP;
 
 	public Field(int amountRow, JFrame frame){
 		this.frame = frame;
@@ -40,7 +41,7 @@ public class Field {
 		//g.setColor(Color.RED);
 		
 		frame.getContentPane().removeAll();
-		ImagePanel imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+		 imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
 		frame.getContentPane().add(imageP);
 		frame.repaint();
 		frame.revalidate();
@@ -149,8 +150,11 @@ public class Field {
 			}
 
 			if(stick.getX() != 0){
-				frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
-				g.fillOval(stick.getX(), stick.getY(), 40, 40);
+				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
+				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
+				imageP.add(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));				
+				frame.revalidate();
+				frame.repaint();
 			}
 		}
 	}
