@@ -89,7 +89,7 @@ public class Field {
 		Graphics g = frame.getGraphics();
 		g.setColor(Color.BLUE);
 
-		for(Stick stick : sticks){
+		for(final Stick stick : sticks){
 			Square A = stick.getA();
 			Square B = stick.getB();
 			if(A.getX() == B.getX() && A.getY() == B.getY()){ // Kollar sig själv
@@ -158,7 +158,32 @@ public class Field {
 				else{
 					imageP.add(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
 				}
-				frame.addMouseListener((MouseAdapter) stick);
+				frame.addMouseListener(new MouseAdapter(){
+					//Hover stuff
+					@Override
+					public void mouseMoved(MouseEvent e){
+						//87 145
+						if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
+								(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
+							System.out.println("Stick: " + stick.getX() + ","+stick.getY());
+						}
+
+						//System.out.println("Entered " + e.getX() + " , " + e.getY() + " for stick: " + this.getX() + ", " + this.getY());
+					}
+
+					@Override
+					public void mouseClicked(MouseEvent e){
+						if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
+								(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
+							System.out.println("Stick placed!! " + stick.getX() + "," + stick.getY());
+							stick.place();
+							System.out.println(stick.isVisible());
+							imageP.add(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
+							frame.revalidate();
+							frame.repaint();
+						}
+					}
+				});//(MouseAdapter) stick);
 				frame.revalidate();
 				frame.repaint();
 			}

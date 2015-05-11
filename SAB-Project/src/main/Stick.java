@@ -32,65 +32,71 @@ public class Stick extends MouseAdapter{
 
 	}
 
-	
-		public Stick(Square A){
+	public Stick(Square A){
 
-			this.A = A;
-			this.B = A;
-			visible = false;
-			A.addStick(this);
-		}
+		this.A = A;
+		this.B = A;
+		visible = false;
+		A.addStick(this);
+	}
 
-		public void place(){
-			if(!chosen){
-				visible = true;
-				chosen = true;
-				//Graphic change
-			}
+	public void place(){
+		if(!chosen){
+			visible = true;
+			chosen = true;
+			//Graphic change
 		}
-		
-		public void setSideways(){
-			if ((A.getX()==X)){
-				sideways = true;	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.
-				}
-				else{
-					sideways =false;
-				}
-		}
-		public boolean isVisible(){
-			return visible;
-		}
+	}
 
-		public boolean sideways(){
-			return  sideways;	
+	public void setSideways(){
+		if ((A.getX()==X)){
+			sideways = true;	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.
 		}
+		else{
+			sideways =false;
+		}
+	}
+	public boolean isVisible(){
+		return visible;
+	}
 
-		public Square getA(){
-			return A;
-		}
-		public Square getB(){
-			return B;
-		}
+	public boolean sideways(){
+		return  sideways;	
+	}
 
-		public void setX(int x){
-			X = x;
-		}
-		public void setY(int y){
-			Y = y;
-		}
+	public Square getA(){
+		return A;
+	}
+	public Square getB(){
+		return B;
+	}
 
-		public int getX(){
-			return X;
-		}
-		public int getY(){
-			return Y;
-		}
+	public void setX(int x){
+		X = x;
+	}
+	public void setY(int y){
+		Y = y;
+	}
 
-	
+	public int getX(){
+		return X;
+	}
+	public int getY(){
+		return Y;
+	}
+
+	public int getXLength(){
+		return XLength;
+	}
+
+	public int getYLength(){
+		return YLength;
+	}
+
 
 	//Hover stuff
 	@Override
-	public void mouseEntered(MouseEvent e){
+	public void mouseMoved(MouseEvent e){
 		//87 145
 		if((e.getX() >= this.getX() && e.getX() <= (this.getX() + XLength)) && 
 				(e.getY() >= this.getY() && e.getY() <= (this.getY() + YLength))){
@@ -102,9 +108,12 @@ public class Stick extends MouseAdapter{
 
 	@Override
 	public void mouseClicked(MouseEvent e){
-		System.out.println("Stick placed!!");
-		place();
-		System.out.println(visible);
+		if((e.getX() >= this.getX() && e.getX() <= (this.getX() + XLength)) && 
+				(e.getY() >= this.getY() && e.getY() <= (this.getY() + YLength))){
+			System.out.println("Stick placed!! " + this.getX() + "," + this.getY());
+			place();
+			System.out.println(visible);
+		}
 	}
 }
 
