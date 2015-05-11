@@ -152,7 +152,12 @@ public class Field {
 			if(stick.getX() != 0){
 				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
 				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
-				imageP.add(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));				
+				if (A.getX() == stick.getX()){
+				imageP.add(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
+				}
+				else{
+					imageP.add(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
+					}
 				frame.revalidate();
 				frame.repaint();
 			}
