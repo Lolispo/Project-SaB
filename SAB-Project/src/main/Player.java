@@ -8,39 +8,38 @@ import javax.swing.JButton;
 public class Player {
 
 	private int points;
-	
+
 	public Player(){
-		
-	points = 0;	
-		
+
+		points = 0;	
+
 	}
-	
+
 	public void addPoints(int p){
 		int i = 0;
 		while (i < p){
 			points++;
 		}
 	}
-	
+
 	public int getPoints(){
-		
+
 		return points;
 	}
-	
-	
+
+
 	public void play(Field field){
 		boolean endTurn = false;
-		while(endTurn == false)
-		JButton play = new JButton("Play");
-		play.addMouseListener(mouseListener l){
-			public void mouseClicked(MouseEvent e){
-				//*compononent*.place();
-			}
-		}
+		
+		
+		
+		
+		
+		while(endTurn == false);
 		int a = field.checkIfSurroundend().size();
 		if(a==0){
 			endTurn = true;
 		}
 		addPoints(a);
-}
+	}
 }

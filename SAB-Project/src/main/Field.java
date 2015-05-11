@@ -139,7 +139,8 @@ public class Field {
 					stick.setY((A.getY() - B.getY())/2 + B.getY());
 				}
 			}
-			else if(A.getY() == B.getY()){
+			else if(A.getY() == B.getY()){frame.revalidate();
+			frame.repaint();
 				stick.setY(A.getY());
 				if(A.getX() < B.getX()){
 					stick.setX((B.getX() - A.getX())/2 + A.getX());
@@ -151,7 +152,8 @@ public class Field {
 
 			if(stick.getX() != 0){
 				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
-				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
+				//g.fillOval(stick.getX(), stick.getY(), 40, 40);frame.revalidate();
+				frame.repaint();
 				if (A.getX() == stick.getX()){
 					stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
 					imageP.add(stick.getPic());
