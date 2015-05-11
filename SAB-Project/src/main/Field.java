@@ -39,13 +39,13 @@ public class Field {
 		//		frame.add(new JButton("Hi"));
 		Graphics g = frame.getGraphics();
 		//g.setColor(Color.RED);
-		
+
 		frame.getContentPane().removeAll();
-		 imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+		imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
 		frame.getContentPane().add(imageP);
 		frame.repaint();
 		frame.revalidate();
-		
+
 		planets = new Square[amountRow][amountRow];
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
@@ -153,11 +153,12 @@ public class Field {
 				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
 				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
 				if (A.getX() == stick.getX()){
-				imageP.add(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
+					imageP.add(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
 				}
 				else{
 					imageP.add(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
-					}
+				}
+				frame.addMouseListener((MouseAdapter) stick);
 				frame.revalidate();
 				frame.repaint();
 			}

@@ -1,6 +1,8 @@
 package main;
 
-public class Stick {
+import java.awt.event.*;
+
+public class Stick extends MouseAdapter{
 
 	private boolean visible;
 	private boolean chosen;
@@ -9,7 +11,7 @@ public class Stick {
 	private int X;
 	private int Y;
 
-	public Stick(Square A, Square B){
+	public Stick(Square A, Square B) {
 		this.A = A;
 		this.B = B;
 		visible = false;
@@ -56,6 +58,16 @@ public class Stick {
 	}
 	public int getY(){
 		return Y;
+	}
+	
+	@Override
+	public void mouseEntered(MouseEvent e){
+		System.out.println("Entered " + e.getX() + " , " + e.getY() + " for stick: " + this.getX() + ", " + this.getY());
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e){
+		System.out.println("Clicked! ");
 	}
 }
 
