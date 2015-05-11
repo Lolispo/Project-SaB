@@ -50,8 +50,8 @@ public class Menu {
 		return buttonStorage;
 	}
 
-	public void setComponent(){
-		imageComponent = new PictureCreateClass("SticksAndBoxes.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
+	public void setComponent(){ //SticksAndBoxes.png
+		imageComponent = new PictureCreateClass("Sticks600.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
 	}
 
 	public PictureCreateClass getComponent(){
@@ -59,10 +59,17 @@ public class Menu {
 	}
 
 	public void goPlay(){
-		frame.getContentPane().removeAll();
-		frame.getContentPane().add(new PictureCreateClass("Universe.png",0,0));
-		frame.revalidate();
-		frame.repaint();
+//		frame.getContentPane().removeAll();
+		//frame.setContentPane(new PictureCreateClass("Universe.png",0,0));
+		
+	//	ImagePanel imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+
+//		imageP.add(new PictureCreateClass("circle.png",200,200));
+
+		
+		//frame.getContentPane().add(new PictureCreateClass("Universe.png",0,0));
+		//frame.revalidate();
+		//frame.repaint();
 		play = new Play(frame);
 	}
 
@@ -71,11 +78,29 @@ public class Menu {
 	}
 
 	public void options(){
+		
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(new PictureCreateClass("Universe.png",0,0));
+		//ImagePanel imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+		//frame.setContentPane(imageP);
+		
+		//frame.setContentPane(pcc1);
+		//frame.setComponentZOrder(pcc1, 1);
+		
+		frame.setContentPane(new PictureCreateClass("Universe.png",0,0));
+		//frame.getContentPane().add(new PictureCreateClass("Universe.png",0,0));
 		frame.revalidate();
 		frame.repaint();		
+		//frame.getContentPane().add(new ImagePanel(new PictureCreateClass("circle.png",4,4).getImage()));
+		
+//		frame.getContentPane().removeAll();
+	//	PictureCreateClass pcc = new PictureCreateClass("circle.png",75, 75);
+	//	pcc.setComponentZOrder(pcc, 2);
+	//	frame.getContentPane().add(new PictureCreateClass("circle.png",75, 75));
+		
+		frame.getContentPane().revalidate();
+		frame.getContentPane().repaint();
 	}
+	
 	
 	public void exitGame(){
 		System.exit(1);

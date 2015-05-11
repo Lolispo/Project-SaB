@@ -49,6 +49,7 @@ public class Main {
 		}
 		panelButtons.setBackground(Color.BLACK);
 		frame.add(panelButtons, BorderLayout.SOUTH);
+		//frame.add(panelButtons, BorderLayout.CENTER);
 		frame.revalidate();
 		frame.repaint();
 	}

@@ -37,14 +37,24 @@ public class Field {
 		//	frame.setLayout(new GridLayout(amountRow,amountRow));
 		//		frame.add(new JButton("Hi"));
 		Graphics g = frame.getGraphics();
-		g.setColor(Color.RED);
-
+		//g.setColor(Color.RED);
+		
+		frame.getContentPane().removeAll();
+		ImagePanel imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+		frame.getContentPane().add(imageP);
+		frame.repaint();
+		frame.revalidate();
+		
 		planets = new Square[amountRow][amountRow];
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
 				planets[i][j].setCoordinates(i,j);
-				g.fillOval(planets[i][j].getX(),planets[i][j].getY(), 60, 60);
+				//g.fillOval(planets[i][j].getX(),planets[i][j].getY(), 60, 60);
+				imageP.add(new PictureCreateClass("circle.png",planets[i][j].getX(),planets[i][j].getY()));				
+				//frame.getContentPane().add(new PictureCreateClass("circle.png",planets[i][j].getX(), planets[i][j].getY()));
+				frame.revalidate();
+				frame.repaint();
 			}
 		}
 		return planets;
