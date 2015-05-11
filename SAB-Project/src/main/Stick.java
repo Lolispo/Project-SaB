@@ -13,6 +13,7 @@ public class Stick extends MouseAdapter{
 	private boolean sideways;
 	private int XLength;
 	private int YLength;
+	private PictureCreateClass picture;
 
 	public Stick(Square A, Square B) {
 		this.A = A;
@@ -93,6 +94,13 @@ public class Stick extends MouseAdapter{
 		return YLength;
 	}
 
+	public void saveCurrentImage(PictureCreateClass p){
+		picture = p;
+	}
+	
+	public PictureCreateClass getPic(){
+		return picture;
+	}
 
 	//Hover stuff
 	@Override

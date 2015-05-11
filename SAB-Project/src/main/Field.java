@@ -153,11 +153,14 @@ public class Field {
 				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
 				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
 				if (A.getX() == stick.getX()){
-					imageP.add(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
+					stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
+					imageP.add(stick.getPic());
 				}
 				else{
-					imageP.add(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
+					stick.saveCurrentImage(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
+					imageP.add(stick.getPic());			
 				}
+
 				frame.addMouseListener(new MouseAdapter(){
 					//Hover stuff
 					@Override
@@ -177,8 +180,10 @@ public class Field {
 								(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
 							System.out.println("Stick placed!! " + stick.getX() + "," + stick.getY());
 							stick.place();
+							imageP.remove(stick.getPic());
+							stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
 							System.out.println(stick.isVisible());
-							imageP.add(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
+							imageP.add(stick.getPic());
 							frame.revalidate();
 							frame.repaint();
 						}
