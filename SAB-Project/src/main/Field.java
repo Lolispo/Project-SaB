@@ -18,8 +18,7 @@ public class Field {
 
 	public Field(int amountRow, JFrame frame){
 		this.frame = frame;
-		taken = new ArrayList();
-		setBackground();
+		taken = new ArrayList<Square>();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
 		circles = amountRow * amountRow;
@@ -31,18 +30,7 @@ public class Field {
 		}
 	}
 
-	public void setBackground(){
-		setComponent();
-		check();
-
-	}
-
 	public Square[][] makePlanets(){
-
-		//	frame.setLayout(new GridLayout(amountRow,amountRow));
-		//		frame.add(new JButton("Hi"));
-		Graphics g = frame.getGraphics();
-		//g.setColor(Color.RED);
 
 		frame.getContentPane().removeAll();
 		imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
@@ -55,9 +43,7 @@ public class Field {
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
 				planets[i][j].setCoordinates(i,j);
-				//g.fillOval(planets[i][j].getX(),planets[i][j].getY(), 60, 60);
 				imageP.add(new PictureCreateClass("circleFixed.png",planets[i][j].getX(),planets[i][j].getY()));				
-				//frame.getContentPane().add(new PictureCreateClass("circle.png",planets[i][j].getX(), planets[i][j].getY()));
 				frame.revalidate();
 				frame.repaint();
 			}
@@ -90,9 +76,7 @@ public class Field {
 	}
 
 	public void drawSticks(){
-		Graphics g = frame.getGraphics();
-		g.setColor(Color.BLUE);
-
+		
 		for(final Stick stick : sticks){
 			Square A = stick.getA();
 			Square B = stick.getB();
@@ -154,8 +138,6 @@ public class Field {
 			}
 
 			if(stick.getX() != 0){
-				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
-				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
 				if (A.getX() == stick.getX()){
 					stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
 					imageP.add(stick.getPic());
@@ -164,39 +146,9 @@ public class Field {
 					stick.saveCurrentImage(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
 					imageP.add(stick.getPic());			
 				}
-				
-				frame.addMouseListener(new MouseAdapter(){
-					//Hover stuff
-					@Override
-					public void mouseMoved(MouseEvent e){
-						//87 145
-						if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
-								(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
-							System.out.println("Stick: " + stick.getX() + ","+stick.getY());
-						}
 
-						//System.out.println("Entered " + e.getX() + " , " + e.getY() + " for stick: " + this.getX() + ", " + this.getY());
-					}
-
-					@Override
-					public void mouseClicked(MouseEvent e){
-						System.out.println(e.getX() + "," + e.getY() + ".\n  " + stick.getX() + "," + stick.getY() + 
-								"\t" + stick.getXLength() + "," + stick.getYLength());
-						if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
-								(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
-							System.out.println("Stick placed!! " + stick.getX() + "," + stick.getY());
-							stick.place();
-							imageP.remove(stick.getPic());
-							stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
-							System.out.println(stick.isVisible());
-							clicked = true;
-							imageP.add(stick.getPic());
-							frame.revalidate();
-							frame.repaint();
-							clicked = false;
-						}
-					}
-				});//(MouseAdapter) stick);
+				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
+				frame.addMouseListener(sma);
 				frame.revalidate();
 				frame.repaint();
 			}
@@ -229,15 +181,11 @@ public class Field {
 		return clicked;
 	}
 
-	public void setComponent(){
-		imageComponent = new PictureCreateClass("Universe.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
-	}
-
-	public PictureCreateClass getComponent(){
-		return imageComponent;
-	}
-
-	public void check(){
-		System.out.println(imageComponent.getURL());
+	public void clickUpdate(Stick stick, StickMouseAdapter sma){
+		imageP.remove(stick.getPic());
+		imageP.add(stick.getPic());
+		frame.revalidate();
+		frame.repaint();
+		frame.removeMouseListener(sma);
 	}
 }
