@@ -15,8 +15,12 @@ public class Field {
 	private JFrame frame;
 	private ImagePanel imageP;
 	private boolean clicked;
+	private Player[] players;
+	private int currentPlayer;
 
-	public Field(int amountRow, JFrame frame){
+	public Field(int amountRow, JFrame frame, Player[] playerArr){
+		currentPlayer = 0;
+		players = playerArr;
 		this.frame = frame;
 		taken = new ArrayList<Square>();
 		sticks =  new ArrayList<Stick>();
@@ -25,9 +29,7 @@ public class Field {
 		planets = makePlanets();
 		makeSticks();
 		drawSticks();
-		for(Stick stick : sticks){
-			System.out.println(stick.getX() + "," + stick.getY() + "  =   1");
-		}
+		
 	}
 
 	public Square[][] makePlanets(){
@@ -193,4 +195,18 @@ public class Field {
 		frame.repaint();
 		frame.removeMouseListener(stick.getMouseAdapter());
 	}
+	
+	public void changePlayer(){
+		if(currentPlayer == players.length-1){
+			currentPlayer = 0;
+		}
+		else{
+			currentPlayer++;
+		}
+	}
+	
+	public void addPoints(int points){
+		players[currentPlayer].addPoints(points);
+	}
+	
 }

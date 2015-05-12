@@ -28,6 +28,13 @@ public class StickMouseAdapter extends MouseAdapter{
 			System.out.println("Stick placed!! " + stick.getX() + "," + stick.getY());
 			stick.place();
 			field.clickUpdate(stick);
+			int pointsEarned =field.checkIfSurroundend().size();
+			if(pointsEarned == 0){
+				field.changePlayer();
+			}
+			else{
+				field.addPoints(pointsEarned);
+			}
 		}
 	}
 }

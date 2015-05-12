@@ -14,11 +14,12 @@ public class Play {
 	public Play(JFrame frame){
 		playerOne = new Player();
 		playerTwo = new Player();
+		Player[] playerArr = {playerOne, playerTwo};
 		this.frame = frame;
 		gameOver = false;
 		turnPlayer = playerOne;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
-		field = new Field(amount, frame);
+		field = new Field(amount, frame, playerArr);
 	//	while (gameOver == false){
 	//		PlayTurn(turnPlayer);
 	//	}
