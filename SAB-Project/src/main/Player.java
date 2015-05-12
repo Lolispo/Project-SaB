@@ -30,16 +30,16 @@ public class Player {
 
 	public void play(Field field){
 		boolean endTurn = false;
-		
-		
-		
-		
-		
-		while(endTurn == false);
-		int a = field.checkIfSurroundend().size();
-		if(a==0){
-			endTurn = true;
+			while(endTurn == false){
+
+			while(field.clicked() == false){
+			}
+
+			int a = field.checkIfSurroundend().size();
+			if(a==0){
+				endTurn = true;
+			}
+			addPoints(a);
 		}
-		addPoints(a);
 	}
 }
