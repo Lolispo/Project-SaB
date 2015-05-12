@@ -232,14 +232,14 @@ public class Field {
 		
 		
 		for(JLabel label : scoreLabel){
-			if(label.getParent() == imageP){
+			if(label != null){
 				imageP.remove(label);
 			}
 		}
 				
 		for(int i = 0; i < scoreLabel.length; i++){
 			String score = players[i].getName()+": "+players[i].getPoints()+" points";
-			scoreLabel[i].setText(score);
+			scoreLabel[i] = new JLabel(score);
 			imageP.add(scoreLabel[i]);
 		}
 	}
