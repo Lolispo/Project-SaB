@@ -189,7 +189,6 @@ public class Field {
 	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
 		stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
-		System.out.println(stick.isVisible());
 		imageP.add(stick.getPic());
 		frame.revalidate();
 		frame.repaint();
@@ -207,6 +206,7 @@ public class Field {
 	
 	public void addPoints(int points){
 		players[currentPlayer].addPoints(points);
+		System.out.println("Player "+(currentPlayer+1)+" currently has "+players[currentPlayer].getPoints()+" points");
 	}
 	
 }

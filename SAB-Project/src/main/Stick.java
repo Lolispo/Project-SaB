@@ -77,6 +77,7 @@ public class Stick extends MouseAdapter{
 		return B;
 	}
 
+	
 	public void setX(int x){
 		X = x;
 	}
