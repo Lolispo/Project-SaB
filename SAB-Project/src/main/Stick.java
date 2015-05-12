@@ -14,6 +14,7 @@ public class Stick extends MouseAdapter{
 	private int XLength;
 	private int YLength;
 	private PictureCreateClass picture;
+	private StickMouseAdapter sma;
 
 	public Stick(Square A, Square B) {
 		this.A = A;
@@ -104,6 +105,14 @@ public class Stick extends MouseAdapter{
 	
 	public PictureCreateClass getPic(){
 		return picture;
+	}
+	
+	public void setMouseAdapter(StickMouseAdapter sma){
+		this.sma = sma;
+	}
+	
+	public StickMouseAdapter getMouseAdapter(){
+		return sma;
 	}
 /*
 	//Hover stuff

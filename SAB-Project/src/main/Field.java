@@ -149,6 +149,9 @@ public class Field {
 
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
 				frame.addMouseListener(sma);
+				stick.setMouseAdapter(sma);
+				
+				
 				frame.revalidate();
 				frame.repaint();
 			}
@@ -181,11 +184,13 @@ public class Field {
 		return clicked;
 	}
 
-	public void clickUpdate(Stick stick, StickMouseAdapter sma){
+	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
+		stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
+		System.out.println(stick.isVisible());
 		imageP.add(stick.getPic());
 		frame.revalidate();
 		frame.repaint();
-		frame.removeMouseListener(sma);
+		frame.removeMouseListener(stick.getMouseAdapter());
 	}
 }

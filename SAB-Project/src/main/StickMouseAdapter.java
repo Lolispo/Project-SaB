@@ -9,6 +9,7 @@ public class StickMouseAdapter extends MouseAdapter{
 	
 	public StickMouseAdapter(Stick stick, Field field){
 		this.stick = stick;
+		this.field = field;
 	}
 		
 	
@@ -26,9 +27,7 @@ public class StickMouseAdapter extends MouseAdapter{
 				(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
 			System.out.println("Stick placed!! " + stick.getX() + "," + stick.getY());
 			stick.place();
-			stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
-			System.out.println(stick.isVisible());
-			field.clickUpdate(stick, this);
+			field.clickUpdate(stick);
 		}
 	}
 }
