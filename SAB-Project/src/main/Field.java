@@ -26,6 +26,9 @@ public class Field {
 		planets = makePlanets();
 		makeSticks();
 		drawSticks();
+		for(Stick stick : sticks){
+			System.out.println(stick.getX() + "," + stick.getY());
+		}
 	}
 
 	public void setBackground(){

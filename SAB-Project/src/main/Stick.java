@@ -101,7 +101,7 @@ public class Stick extends MouseAdapter{
 	public PictureCreateClass getPic(){
 		return picture;
 	}
-
+/*
 	//Hover stuff
 	@Override
 	public void mouseMoved(MouseEvent e){
@@ -122,6 +122,6 @@ public class Stick extends MouseAdapter{
 			place();
 			System.out.println(visible);
 		}
-	}
+	}*/
 }
 
