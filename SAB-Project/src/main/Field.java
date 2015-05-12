@@ -3,6 +3,7 @@ package main;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class Field {
 
@@ -246,7 +247,6 @@ public class Field {
 		frame.getContentPane().add(imageP, BorderLayout.CENTER);
 		frame.revalidate();
 		frame.repaint();
-		
 	}
 
 	public void printScores(){		

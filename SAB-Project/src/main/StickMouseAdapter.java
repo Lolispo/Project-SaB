@@ -22,7 +22,15 @@ public class StickMouseAdapter extends MouseAdapter{
 	}
 
 	@Override
+	public void mouseReleased(MouseEvent e){
+		clickWasMade(e);
+	}
+	
+	@Override
 	public void mouseClicked(MouseEvent e){
+		clickWasMade(e);
+	}
+	public void clickWasMade(MouseEvent e){
 		if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
 				(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
 			stick.place();
