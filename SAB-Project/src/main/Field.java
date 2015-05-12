@@ -243,5 +243,15 @@ public class Field {
 			imageP.add(scoreLabel[i]);
 		}
 	}
+	
+	public void repaintVictory(){
+		frame.getContentPane().remove(imageP);
+		frame.setSize(1500, 844);
+		imageP = new ImagePanel(new PictureCreateClass("Exterminatus.png",0,0).getImage());
+		frame.getContentPane().add(imageP, BorderLayout.CENTER);
+		frame.revalidate();
+		frame.repaint();
+		
+	}
 
 }

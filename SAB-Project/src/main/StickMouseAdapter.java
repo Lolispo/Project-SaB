@@ -34,7 +34,7 @@ public class StickMouseAdapter extends MouseAdapter{
 			else{
 				field.addPoints(pointsEarned);
 				if(field.checkIfGameOver()){
-					//WINNER SCREEN GOES HERE BITCHES.
+					field.repaintVictory();
 				}
 			}
 		}
