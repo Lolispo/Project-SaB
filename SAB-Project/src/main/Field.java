@@ -1,13 +1,12 @@
 package main;
+
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
 public class Field {
 
 	private int circles;
-	private PictureCreateClass imageComponent;
 	private Square[][] planets;
 	private int amountRow;
 	private ArrayList<Stick> sticks;
@@ -17,28 +16,41 @@ public class Field {
 	private boolean clicked;
 	private Player[] players;
 	private int currentPlayer;
+	private JLabel[] scoreLabel;
 
 	public Field(int amountRow, JFrame frame, Player[] playerArr){
+		this.frame = frame;
+		setBackground();
 		currentPlayer = 0;
 		players = playerArr;
-		this.frame = frame;
 		taken = new ArrayList<Square>();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
 		circles = amountRow * amountRow;
+		scoreLabel = new JLabel[players.length];
 		planets = makePlanets();
 		makeSticks();
 		drawSticks();
-		
+
+	}
+
+	public void setBackground(){
+		frame.getContentPane().removeAll();
+		imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+		frame.getContentPane().add(imageP, BorderLayout.CENTER);
+		/*
+		JPanel panel = new JPanel();
+		JButton jb = new JButton("Hi");
+		JTextField text = new JTextField("Bye");
+		panel.add(jb);
+		panel.add(text);
+		frame.getContentPane().add(panel, BorderLayout.EAST);
+		*/
+		frame.repaint();
+		frame.revalidate();
 	}
 
 	public Square[][] makePlanets(){
-
-		frame.getContentPane().removeAll();
-		imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
-		frame.getContentPane().add(imageP);
-		frame.repaint();
-		frame.revalidate();
 
 		planets = new Square[amountRow][amountRow];
 		for(int i = 0; i < amountRow; i++){
@@ -78,7 +90,7 @@ public class Field {
 	}
 
 	public void drawSticks(){
-		
+
 		for(final Stick stick : sticks){
 			Square A = stick.getA();
 			Square B = stick.getB();
@@ -152,8 +164,8 @@ public class Field {
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
 				frame.addMouseListener(sma);
 				stick.setMouseAdapter(sma);
-				
-				
+
+
 				frame.revalidate();
 				frame.repaint();
 			}
@@ -194,7 +206,7 @@ public class Field {
 		frame.repaint();
 		frame.removeMouseListener(stick.getMouseAdapter());
 	}
-	
+
 	public void changePlayer(){
 		if(currentPlayer == players.length-1){
 			currentPlayer = 0;
@@ -203,10 +215,26 @@ public class Field {
 			currentPlayer++;
 		}
 	}
-	
+
 	public void addPoints(int points){
 		players[currentPlayer].addPoints(points);
-		System.out.println("Player "+(currentPlayer+1)+" currently has "+players[currentPlayer].getPoints()+" points");
+		printScores();
 	}
 	
+	public void printScores(){
+		
+		
+		for(JLabel label : scoreLabel){
+			if(label.getParent() == imageP){
+				imageP.remove(label);
+			}
+		}
+				
+		for(int i = 0; i < scoreLabel.length; i++){
+			String score = players[i].getName()+": "+players[i].getPoints()+" points";
+			scoreLabel[i].setText(score);
+			imageP.add(scoreLabel[i]);
+		}
+	}
+
 }

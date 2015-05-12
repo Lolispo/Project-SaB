@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class Player {
-
+	private String name;
 	private int points;
 
 	public Player(){
@@ -28,4 +28,10 @@ public class Player {
 		return points;
 	}
 
+	public void setName(String name){
+		this.name = name;
+	}
+	public String getName(){
+		return name;
+	}
 }
