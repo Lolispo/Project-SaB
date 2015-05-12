@@ -19,9 +19,9 @@ public class Play {
 		turnPlayer = playerOne;
 		int amount = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of circles in each row"));
 		field = new Field(amount, frame);
-		while (gameOver == false){
-			PlayTurn(turnPlayer);
-		}
+	//	while (gameOver == false){
+	//		PlayTurn(turnPlayer);
+	//	}
 		//Display a game over screen!
 		//Rematch and return to main menu.
 	}

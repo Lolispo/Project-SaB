@@ -27,7 +27,7 @@ public class Field {
 		makeSticks();
 		drawSticks();
 		for(Stick stick : sticks){
-			System.out.println(stick.getX() + "," + stick.getY());
+			System.out.println(stick.getX() + "," + stick.getY() + "  =   1");
 		}
 	}
 
@@ -164,7 +164,7 @@ public class Field {
 					stick.saveCurrentImage(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
 					imageP.add(stick.getPic());			
 				}
-
+				
 				frame.addMouseListener(new MouseAdapter(){
 					//Hover stuff
 					@Override
@@ -180,6 +180,8 @@ public class Field {
 
 					@Override
 					public void mouseClicked(MouseEvent e){
+						System.out.println(e.getX() + "," + e.getY() + ".\n  " + stick.getX() + "," + stick.getY() + 
+								"\t" + stick.getXLength() + "," + stick.getYLength());
 						if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
 								(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
 							System.out.println("Stick placed!! " + stick.getX() + "," + stick.getY());

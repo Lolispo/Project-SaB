@@ -22,6 +22,19 @@ public class Stick extends MouseAdapter{
 		//System.out.println("Bug finder:\nA = " + A + "\nB = "+B);
 		A.addStick(this);
 		B.addStick(this);
+		checkSideways();
+		
+	}
+
+	public Stick(Square A){
+		this.A = A;
+		this.B = A;
+		visible = false;
+		A.addStick(this);
+		checkSideways();
+	}
+
+	public void checkSideways(){
 		if(sideways){
 			XLength = 145;
 			YLength = 87;
@@ -30,15 +43,6 @@ public class Stick extends MouseAdapter{
 			XLength = 87;
 			YLength = 145;
 		}
-
-	}
-
-	public Stick(Square A){
-
-		this.A = A;
-		this.B = A;
-		visible = false;
-		A.addStick(this);
 	}
 
 	public void place(){
@@ -62,7 +66,7 @@ public class Stick extends MouseAdapter{
 	}
 
 	public boolean sideways(){
-		return  sideways;	
+		return sideways;	
 	}
 
 	public Square getA(){
