@@ -238,6 +238,16 @@ public class Field {
 	public void showPlayerTurn(){
 		turnLabel.setText("Current turn: " + players[currentPlayer].getName());
 	}
+	
+	public void repaintVictory(){
+		frame.getContentPane().remove(imageP);
+		frame.setSize(1500, 844);
+		imageP = new ImagePanel(new PictureCreateClass("Exterminatus.png",0,0).getImage());
+		frame.getContentPane().add(imageP, BorderLayout.CENTER);
+		frame.revalidate();
+		frame.repaint();
+		
+	}
 
 	public void printScores(){		
 		for(int i = 0; i < scoreLabel.length; i++){
