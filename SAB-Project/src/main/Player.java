@@ -19,6 +19,7 @@ public class Player {
 		int i = 0;
 		while (i < p){
 			points++;
+			i++;
 		}
 	}
 
@@ -27,19 +28,4 @@ public class Player {
 		return points;
 	}
 
-
-	public void play(Field field){
-		boolean endTurn = false;
-//			while(endTurn == false){
-
-	//		while(field.clicked() == false){
-		//	}
-
-			int a = field.checkIfSurroundend().size();
-			if(a==0){
-				endTurn = true;
-			}
-			addPoints(a);
-	//	}
-	}
 }
