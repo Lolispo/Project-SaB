@@ -6,6 +6,7 @@ public class Square {
 	private int numberOfSticks;
 	private int X;
 	private int Y;
+	private PictureCreateClass picture;
 
 	public Square(){
 		sticks = new Stick[4];
@@ -53,5 +54,12 @@ public class Square {
 	}
 	public int getY(){
 		return Y;
+	}
+	public void saveCurrentImage(PictureCreateClass p){
+		picture = p;
+	}
+	
+	public PictureCreateClass getPic(){
+		return picture;
 	}
 }
