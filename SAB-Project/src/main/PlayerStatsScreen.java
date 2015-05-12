@@ -42,7 +42,7 @@ public class PlayerStatsScreen {
 		final JTextField[] text = new JTextField[amountPlayers];
 		for(int i = 0; i < amountPlayers; i++){
 			JLabel name = new JLabel("Name: ");
-			text[i] = new JTextField("               ");
+			text[i] = new JTextField("",10);
 			panel.add(name);
 			panel.add(text[i]);
 		}
@@ -53,7 +53,7 @@ public class PlayerStatsScreen {
 				players = new Player[amount];
 				for(int i = 0; i < amount; i++){
 					players[i] = new Player();
-					players[i].setName(text[i].getText());	
+					players[i].setName(text[i].getText());
 				}
 				tempFrame.setVisible(false);
 				new Play(frame, players);

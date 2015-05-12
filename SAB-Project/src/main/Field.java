@@ -17,10 +17,11 @@ public class Field {
 	private Player[] players;
 	private int currentPlayer;
 	private JLabel[] scoreLabel;
+	private JPanel panel;
+	private JLabel turnLabel;
 
 	public Field(int amountRow, JFrame frame, Player[] playerArr){
 		this.frame = frame;
-		setBackground();
 		currentPlayer = 0;
 		players = playerArr;
 		taken = new ArrayList<Square>();
@@ -28,6 +29,9 @@ public class Field {
 		this.amountRow = amountRow;
 		circles = amountRow * amountRow;
 		scoreLabel = new JLabel[players.length];
+		turnLabel = new JLabel();
+
+		setBackground();
 		planets = makePlanets();
 		makeSticks();
 		drawSticks();
@@ -38,14 +42,16 @@ public class Field {
 		frame.getContentPane().removeAll();
 		imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
 		frame.getContentPane().add(imageP, BorderLayout.CENTER);
-		/*
-		JPanel panel = new JPanel();
-		JButton jb = new JButton("Hi");
-		JTextField text = new JTextField("Bye");
-		panel.add(jb);
-		panel.add(text);
-		frame.getContentPane().add(panel, BorderLayout.EAST);
-		*/
+		panel = new JPanel();
+		panel.add(turnLabel);
+		for(int i = 0; i < scoreLabel.length; i++){
+			String score = players[i].getName()+": "+players[i].getPoints()+" points";
+			scoreLabel[i] = new JLabel(score);
+			panel.add(scoreLabel[i]);
+		}
+		showPlayerTurn();
+		printScores();
+		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		frame.repaint();
 		frame.revalidate();
 	}
@@ -153,7 +159,7 @@ public class Field {
 			}
 
 			if(stick.getX() != 0){
-				
+
 				stick.saveCurrentImage(new PictureCreateClass("YTriangle.png",stick.getX(),stick.getY()));
 				imageP.add(stick.getPic());
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
@@ -221,27 +227,22 @@ public class Field {
 		else{
 			currentPlayer++;
 		}
+		showPlayerTurn();
 	}
 
 	public void addPoints(int points){
 		players[currentPlayer].addPoints(points);
 		printScores();
 	}
-	
-	public void printScores(){
-		
-		
-		for(JLabel label : scoreLabel){
-			if(label != null){
-				imageP.remove(label);
-			}
-		}
-				
-		for(int i = 0; i < scoreLabel.length; i++){
-			String score = players[i].getName()+": "+players[i].getPoints()+" points";
-			scoreLabel[i] = new JLabel(score);
-			imageP.add(scoreLabel[i]);
-		}
+
+	public void showPlayerTurn(){
+		turnLabel.setText("Current turn: " + players[currentPlayer].getName());
 	}
 
+	public void printScores(){		
+		for(int i = 0; i < scoreLabel.length; i++){
+			String score = players[i].getName()+": "+players[i].getPoints()+" points";
+			scoreLabel[i].setText(score);
+		}
+	}
 }
