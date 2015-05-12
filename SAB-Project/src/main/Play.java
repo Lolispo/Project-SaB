@@ -12,6 +12,8 @@ public class Play {
 	private boolean gameOver;
 
 	public Play(JFrame frame){
+		playerOne = new Player();
+		playerTwo = new Player();
 		this.frame = frame;
 		gameOver = false;
 		turnPlayer = playerOne;
@@ -28,6 +30,7 @@ public class Play {
 		
 		turnPlayer.play(field);
 		gameOver = field.checkIfGameOver();
+		System.out.println(turnPlayer.getPoints());
 		if(turnPlayer == playerOne){
 			turnPlayer = playerTwo;
 		}
@@ -35,5 +38,6 @@ public class Play {
 		else {
 			turnPlayer = playerOne;
 		}
+		
 	}
 }

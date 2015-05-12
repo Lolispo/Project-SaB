@@ -14,10 +14,11 @@ public class Field {
 	private ArrayList<Square> taken;
 	private JFrame frame;
 	private ImagePanel imageP;
+	private boolean clicked;
 
 	public Field(int amountRow, JFrame frame){
 		this.frame = frame;
-
+		taken = new ArrayList();
 		setBackground();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
@@ -139,8 +140,7 @@ public class Field {
 					stick.setY((A.getY() - B.getY())/2 + B.getY());
 				}
 			}
-			else if(A.getY() == B.getY()){frame.revalidate();
-			frame.repaint();
+			else if(A.getY() == B.getY()){
 				stick.setY(A.getY());
 				if(A.getX() < B.getX()){
 					stick.setX((B.getX() - A.getX())/2 + A.getX());
@@ -152,8 +152,7 @@ public class Field {
 
 			if(stick.getX() != 0){
 				//frame.add(new PictureCreateClass("stick.png",stick.getX(), stick.getY()));
-				//g.fillOval(stick.getX(), stick.getY(), 40, 40);frame.revalidate();
-				frame.repaint();
+				//g.fillOval(stick.getX(), stick.getY(), 40, 40);
 				if (A.getX() == stick.getX()){
 					stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
 					imageP.add(stick.getPic());
@@ -185,9 +184,11 @@ public class Field {
 							imageP.remove(stick.getPic());
 							stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
 							System.out.println(stick.isVisible());
+							clicked = true;
 							imageP.add(stick.getPic());
 							frame.revalidate();
 							frame.repaint();
+							clicked = false;
 						}
 					}
 				});//(MouseAdapter) stick);
@@ -219,7 +220,9 @@ public class Field {
 		return false;
 	}
 
-
+	public boolean clicked(){
+		return clicked;
+	}
 
 	public void setComponent(){
 		imageComponent = new PictureCreateClass("Universe.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
