@@ -57,7 +57,8 @@ public class Field {
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
 				planets[i][j].setCoordinates(i,j);
-				imageP.add(new PictureCreateClass("circleFixed.png",planets[i][j].getX(),planets[i][j].getY()));				
+				planets[i][j].saveCurrentImage(new PictureCreateClass("circleFixed.png",planets[i][j].getX(),planets[i][j].getY()));
+				imageP.add(planets[i][j].getPic());					
 				frame.revalidate();
 				frame.repaint();
 			}
@@ -152,15 +153,9 @@ public class Field {
 			}
 
 			if(stick.getX() != 0){
-				if (A.getX() == stick.getX()){
-					stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
-					imageP.add(stick.getPic());
-				}
-				else{
-					stick.saveCurrentImage(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
-					imageP.add(stick.getPic());			
-				}
-
+				
+				stick.saveCurrentImage(new PictureCreateClass("YTriangle.png",stick.getX(),stick.getY()));
+				imageP.add(stick.getPic());
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
 				frame.addMouseListener(sma);
 				stick.setMouseAdapter(sma);
@@ -180,6 +175,11 @@ public class Field {
 				if(planets[i][j].surrounded()==true && taken.contains(planets[i][j]) == false){
 					taken.add(planets[i][j]);
 					surroundedSquares.add(planets[i][j]);
+					imageP.remove(planets[i][j].getPic());
+					planets[i][j].saveCurrentImage(new PictureCreateClass("Explosion.png",planets[i][j].getX(),planets[i][j].getY()));
+					imageP.add(planets[i][j].getPic());					
+					frame.revalidate();
+					frame.repaint();
 				}
 			}
 		}
@@ -200,7 +200,14 @@ public class Field {
 
 	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
-		stick.saveCurrentImage(new PictureCreateClass("circleFixed.png",stick.getX(),stick.getY()));
+		if (stick.getA().getX() == stick.getX()){
+			stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
+			imageP.add(stick.getPic());
+		}
+		else{
+			stick.saveCurrentImage(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
+			imageP.add(stick.getPic());			
+		}
 		imageP.add(stick.getPic());
 		frame.revalidate();
 		frame.repaint();
