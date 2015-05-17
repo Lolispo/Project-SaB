@@ -33,6 +33,8 @@ public class StickMouseAdapter extends MouseAdapter{
 	public void clickWasMade(MouseEvent e){
 		if((e.getX() >= stick.getX() && e.getX() <= (stick.getX() + stick.getXLength())) && 
 				(e.getY() >= stick.getY() && e.getY() <= (stick.getY() + stick.getYLength()))){
+			System.out.println(e.getX() + "," + e.getY() + "\nStick: " + stick.getX() + "," + stick.getY()
+					+ "\nLength: "+stick.getXLength() + "," + stick.getYLength());
 			stick.place();
 			field.clickUpdate(stick);
 			int pointsEarned =field.checkIfSurroundend().size();
