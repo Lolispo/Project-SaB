@@ -45,8 +45,8 @@ public class Square {
 	}
 
 	public void setCoordinates(int i, int j) {
-		X = 100 + 150*i;//75+200*i;
-		Y = 100 + 150*j;//75+200*j;	
+		X = 100 + 150*i;//75+200*i;  Latest 100 + 150*i
+		Y = 100 + 150*j;//75+200*j;	Latest 100 + 150*j
 	}
 	
 	public int getX(){

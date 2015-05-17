@@ -37,12 +37,12 @@ public class Stick extends MouseAdapter{
 
 	public void checkSideways(){
 		if(sideways){
-			XLength = 145;
-			YLength = 87;
+			XLength = 100;
+			YLength = 50;
 		}
 		else{
-			XLength = 87;
-			YLength = 145;
+			XLength = 50;
+			YLength = 100;
 		}
 	}
 

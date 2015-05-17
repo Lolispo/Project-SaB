@@ -140,7 +140,7 @@ public class Field {
 					}
 				}
 			}
-			else if(A.getX() == B.getX()){
+			else if(A.getX() == B.getX()){ // Other sticks between planets
 				stick.setX(A.getX());
 				if(A.getY() < B.getY()){
 					stick.setY((B.getY() - A.getY())/2 + A.getY());
@@ -161,7 +161,12 @@ public class Field {
 
 			if(stick.getX() != 0){
 
-				stick.saveCurrentImage(new PictureCreateClass("YTriangle.png",stick.getX(),stick.getY()));
+				if (stick.getA().getX() == stick.getX()){
+					stick.saveCurrentImage(new PictureCreateClass("LandingArea.png",stick.getX(),stick.getY()));
+				}
+				else{
+					stick.saveCurrentImage(new PictureCreateClass("LandingAreaShifted.png",stick.getX(),stick.getY()));
+				}
 				imageP.add(stick.getPic());
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
 				frame.addMouseListener(sma);
@@ -209,12 +214,10 @@ public class Field {
 	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
 		if (stick.getA().getX() == stick.getX()){
-			stick.saveCurrentImage(new PictureCreateClass("stickSideWays.png",stick.getX(),stick.getY()));
-			imageP.add(stick.getPic());
+			stick.saveCurrentImage(new PictureCreateClass("mainShipShift.png",stick.getX(),stick.getY()));
 		}
 		else{
-			stick.saveCurrentImage(new PictureCreateClass("stick.png",stick.getX(),stick.getY()));
-			imageP.add(stick.getPic());			
+			stick.saveCurrentImage(new PictureCreateClass("mainShip.png",stick.getX(),stick.getY()));
 		}
 		imageP.add(stick.getPic());
 		frame.revalidate();
