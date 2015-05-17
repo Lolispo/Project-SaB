@@ -3,8 +3,8 @@ package main;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.util.*;
 
 public class PlayerStatsScreen {
 
@@ -14,6 +14,8 @@ public class PlayerStatsScreen {
 	private JPanel panel;
 	private int amountPlayers;
 	private Player[] players;
+	private String[] URLs;
+	private static final int AMOUNT_PLANETS = 3;
 	
 	public PlayerStatsScreen(JFrame frame){
 		this.frame = frame;
@@ -35,6 +37,12 @@ public class PlayerStatsScreen {
 		tempFrame.add(panel);
 		tempFrame.revalidate();
 		tempFrame.repaint();
+		
+		URLs = new String[AMOUNT_PLANETS];
+		URLs[0] = ("planet1.png");
+		URLs[1] = ("planet2.png");
+		URLs[2] = ("planet3.png");
+		//URLs[3] = ("planet4.png");
 		setInfo();
 	}
 	
@@ -54,6 +62,7 @@ public class PlayerStatsScreen {
 				for(int i = 0; i < amount; i++){
 					players[i] = new Player();
 					players[i].setName(text[i].getText());
+					players[i].setURL(URLs[i % AMOUNT_PLANETS]);
 				}
 				tempFrame.setVisible(false);
 				new Play(frame, players);

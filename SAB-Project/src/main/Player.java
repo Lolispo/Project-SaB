@@ -8,7 +8,8 @@ import javax.swing.JButton;
 public class Player {
 	private String name;
 	private int points;
-
+	private String URL;
+	
 	public Player(){
 
 		points = 0;	
@@ -34,4 +35,13 @@ public class Player {
 	public String getName(){
 		return name;
 	}
+	
+	public void setURL(String URL){
+		this.URL = URL;
+	}
+	
+	public String getURL(){
+		return URL;
+	}
+
 }

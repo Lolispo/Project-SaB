@@ -64,7 +64,7 @@ public class Field {
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
 				planets[i][j].setCoordinates(i,j);
-				planets[i][j].saveCurrentImage(new PictureCreateClass("circleFixed.png",planets[i][j].getX(),planets[i][j].getY()));
+				planets[i][j].saveCurrentImage(new PictureCreateClass("planet4.png",planets[i][j].getX(),planets[i][j].getY()));
 				imageP.add(planets[i][j].getPic());					
 				frame.revalidate();
 				frame.repaint();
@@ -183,7 +183,8 @@ public class Field {
 					taken.add(planets[i][j]);
 					surroundedSquares.add(planets[i][j]);
 					imageP.remove(planets[i][j].getPic());
-					planets[i][j].saveCurrentImage(new PictureCreateClass("Explosion.png",planets[i][j].getX(),planets[i][j].getY()));
+					planets[i][j].saveCurrentImage(new PictureCreateClass(players[currentPlayer].getURL(),
+							planets[i][j].getX(),planets[i][j].getY()));
 					imageP.add(planets[i][j].getPic());					
 					frame.revalidate();
 					frame.repaint();
@@ -243,6 +244,7 @@ public class Field {
 	public void repaintVictory(){
 		frame.getContentPane().remove(imageP);
 		frame.setSize(1500, 844);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Something for max frame instead of fixed
 		imageP = new ImagePanel(new PictureCreateClass("Exterminatus.png",0,0).getImage());
 		frame.getContentPane().add(imageP, BorderLayout.CENTER);
 		frame.revalidate();
