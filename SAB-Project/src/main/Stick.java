@@ -6,8 +6,8 @@ public class Stick extends MouseAdapter{
 
 	private boolean visible;
 	private boolean chosen;
-	private Square A;
-	private Square B;
+	private Circle A;
+	private Circle B;
 	private int X;
 	private int Y;
 	private boolean sideways;
@@ -16,7 +16,7 @@ public class Stick extends MouseAdapter{
 	private PictureCreateClass picture;
 	private StickMouseAdapter sma;
 
-	public Stick(Square A, Square B) {
+	public Stick(Circle A, Circle B) {
 		this.A = A;
 		this.B = B;
 		visible = false;
@@ -25,7 +25,7 @@ public class Stick extends MouseAdapter{
 		B.addStick(this);
 	}
 
-	public Stick(Square A){
+	public Stick(Circle A){
 		this.A = A;
 		this.B = A;
 		visible = false;
@@ -61,10 +61,10 @@ public class Stick extends MouseAdapter{
 		return sideways;	
 	}
 
-	public Square getA(){
+	public Circle getA(){
 		return A;
 	}
-	public Square getB(){
+	public Circle getB(){
 		return B;
 	}
 	

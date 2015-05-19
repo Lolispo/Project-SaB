@@ -8,10 +8,10 @@ import java.awt.event.*;
 public class Field {
 
 	private int circles;
-	private Square[][] planets;
+	private Circle[][] planets;
 	private int amountRow;
 	private ArrayList<Stick> sticks;
-	private ArrayList<Square> taken;
+	private ArrayList<Circle> taken;
 	private JFrame frame;
 	private ImagePanel imageP;
 	private boolean clicked;
@@ -25,7 +25,7 @@ public class Field {
 		this.frame = frame;
 		currentPlayer = 0;
 		players = playerArr;
-		taken = new ArrayList<Square>();
+		taken = new ArrayList<Circle>();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
 		circles = amountRow * amountRow;
@@ -52,17 +52,18 @@ public class Field {
 		}
 		showPlayerTurn();
 		printScores();
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		panel.setForeground(Color.WHITE);
+		imageP.add(panel);
 		frame.repaint();
 		frame.revalidate();
 	}
 
-	public Square[][] makePlanets(){
+	public Circle[][] makePlanets(){
 
-		planets = new Square[amountRow][amountRow];
+		planets = new Circle[amountRow][amountRow];
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
-				planets[i][j] = new Square();
+				planets[i][j] = new Circle();
 				planets[i][j].setCoordinates(i,j);
 				//System.out.println("Planet coordinates: " + planets[i][j].getX() + "," + planets[i][j].getY());
 				planets[i][j].saveCurrentImage(new PictureCreateClass("planet4.png",planets[i][j].getX(),planets[i][j].getY()));
@@ -101,8 +102,8 @@ public class Field {
 	public void drawSticks(){
 
 		for(final Stick stick : sticks){
-			Square A = stick.getA();
-			Square B = stick.getB();
+			Circle A = stick.getA();
+			Circle B = stick.getB();
 			if(A.getX() == B.getX() && A.getY() == B.getY()){ // Kollar sig själv
 				for(Stick innerStick : A.getSticks()){
 					if(innerStick.getX() != 0 && innerStick.getY() != 0){
@@ -195,8 +196,8 @@ public class Field {
 		}
 	}
 
-	public ArrayList<Square> checkIfSurroundend(){
-		ArrayList<Square> surroundedSquares = new ArrayList<Square>(); 
+	public ArrayList<Circle> checkIfSurroundend(){
+		ArrayList<Circle> surroundedSquares = new ArrayList<Circle>(); 
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if(planets[i][j].surrounded()==true && taken.contains(planets[i][j]) == false){
@@ -273,5 +274,9 @@ public class Field {
 			String score = players[i].getName()+": "+players[i].getPoints()+" points";
 			scoreLabel[i].setText(score);
 		}
+	}
+	
+	public int getAmountRow(){
+		return amountRow;
 	}
 }

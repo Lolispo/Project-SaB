@@ -1,6 +1,6 @@
 package main; 
 
-public class Square {
+public class Circle {
 
 	private Stick[] sticks;
 	private int numberOfSticks;
@@ -11,7 +11,7 @@ public class Square {
 	private int YLength;
 	
 
-	public Square(){
+	public Circle(){
 		sticks = new Stick[4];
 		XLength = 100;
 		YLength = 100;

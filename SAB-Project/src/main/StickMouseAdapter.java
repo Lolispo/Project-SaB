@@ -32,7 +32,13 @@ public class StickMouseAdapter extends MouseAdapter{
 	}
 	public void clickWasMade(MouseEvent e){
 		int stickX = stick.getX();
-		int stickY = stick.getY()+50;
+		int stickY;
+		if(field.getAmountRow() == 3){
+			stickY = stick.getY() + 25;
+		}
+		else{
+			stickY = stick.getY();
+		}
 		if((e.getX() >= stickX && e.getX() <= (stickX + stick.getXLength())) && 
 				(e.getY() >= stickY && e.getY() <= (stickY + stick.getYLength()))){
 		
