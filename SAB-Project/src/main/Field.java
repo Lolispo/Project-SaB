@@ -192,7 +192,7 @@ public class Field {
 					//stick.setX((A.getX() - B.getX())/2 + B.getX());
 				}
 			}
-
+						
 			if(stick.getX() != 0){
 				stick.setSideways();
 				if (stick.getA().getX() == stick.getX()){
@@ -202,6 +202,9 @@ public class Field {
 					stick.saveCurrentImage(new PictureCreateClass(URLs.PLACE_VERTICAL,stick.getX(),stick.getY()));
 				}
 				imageP.add(stick.getPic());
+				
+		//		StickMouseAdapter sma = new 
+				
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
 				frame.addMouseListener(sma);
 				stick.setMouseAdapter(sma);
@@ -286,8 +289,6 @@ public class Field {
 
 	public void repaintVictory(){
 		frame.getContentPane().remove(imageP);
-		//frame.setSize(1500, 844);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Something for max frame instead of fixed
 		imageP = new ImagePanel(new PictureCreateClass(URLs.EXIT_SCREEN,0,0).getImage());
 		frame.getContentPane().add(imageP, BorderLayout.CENTER);
 		StringBuilder winningPlayerName = new StringBuilder();
@@ -303,10 +304,15 @@ public class Field {
 				leadingScore = players[i].getPoints();
 			}
 		}
-		JLabel winner = new JLabel("Winner is " + winningPlayerName.toString() + "!");
+		JLabel winner = new JLabel("<html><font color='white'>Winner is <font color='yellow'>" + 
+				winningPlayerName.toString() + "!</font></html>");
 		winner.setForeground(Color.WHITE);
 		winner.setFont(new Font("Serif", Font.BOLD, 30));
-		imageP.add(winner);
+		JPanel tempPanel = new JPanel();
+		tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.LINE_AXIS));
+		tempPanel.add(Box.createHorizontalStrut(200));
+		tempPanel.add(winner);
+		imageP.add(tempPanel);
 		frame.revalidate();
 		frame.repaint();
 		MouseAdapter mouseListener = new MouseAdapter(){

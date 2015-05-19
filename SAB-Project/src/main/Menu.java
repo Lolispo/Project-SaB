@@ -93,7 +93,7 @@ public class Menu {
 	}
 
 	public void setComponent(){ //SticksAndBoxes.png
-		imageComponent = new PictureCreateClass("Sticks800.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
+		imageComponent = new PictureCreateClass(URLs.MENU,0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
 	}
 
 	public PictureCreateClass getComponent(){
@@ -110,7 +110,7 @@ public class Menu {
 		JPanel outerPanel = new JPanel();		
 		outerPanel.setLayout(new FlowLayout()); 
 				
-		String[] Themes = {"Space"};
+		String[] Themes = {"Space", "Original"};
 		JComboBox themeList = new JComboBox(Themes);
 		themeList.setSelectedIndex(0);
 		JLabel theme = new JLabel("Choose what theme you want on the game: ");
@@ -133,7 +133,7 @@ public class Menu {
 			}	
 		});
 		JButton returnButton = new JButton("Back");
-		panel.add(Box.createVerticalStrut(200));
+		panel.add(Box.createVerticalStrut(100));
 		panel.add(returnButton);
 		returnButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

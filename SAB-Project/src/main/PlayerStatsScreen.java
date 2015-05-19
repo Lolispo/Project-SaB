@@ -15,7 +15,7 @@ public class PlayerStatsScreen {
 	private Player[] players;
 	private JTextField[] text; //final
 
-	public PlayerStatsScreen(JFrame frame){
+	public PlayerStatsScreen(final JFrame frame){
 		this.frame = frame;
 
 		String[] numberList = {"2","3","4"};
@@ -41,6 +41,16 @@ public class PlayerStatsScreen {
 		frame.add(outerPanel);
 		panel.setBackground(Color.BLACK);
 		outerPanel.setBackground(Color.BLACK);
+		JButton returnButton = new JButton("Go to Menu");
+		outerPanel.add(Box.createHorizontalStrut(100));
+		outerPanel.add(returnButton);
+		returnButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Menu m = new Menu(frame);
+				m.makeMenu();
+			}
+		});
+		
 		frame.revalidate();
 		frame.repaint();
 		dropdownList.addActionListener(new ActionListener(){
