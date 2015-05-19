@@ -23,8 +23,6 @@ public class Stick extends MouseAdapter{
 		//System.out.println("Bug finder:\nA = " + A + "\nB = "+B);
 		A.addStick(this);
 		B.addStick(this);
-		checkSideways();
-		
 	}
 
 	public Stick(Square A){
@@ -32,18 +30,6 @@ public class Stick extends MouseAdapter{
 		this.B = A;
 		visible = false;
 		A.addStick(this);
-		checkSideways();
-	}
-
-	public void checkSideways(){
-		if(sideways){
-			XLength = 100;
-			YLength = 50;
-		}
-		else{
-			XLength = 50;
-			YLength = 100;
-		}
 	}
 
 	public void place(){
@@ -54,14 +40,19 @@ public class Stick extends MouseAdapter{
 		}
 	}
 
-	public void setSideways(){
-		if ((A.getX()==X)){
+	public void setSideways(){ //Sets before printed in field
+		if ((A.getX() == this.getX()) && (A.getY() != this.getY())){
 			sideways = true;	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.
+			XLength = 100;
+			YLength = 50;
 		}
 		else{
-			sideways =false;
+			sideways = false;
+			XLength = 50;
+			YLength = 100;
 		}
 	}
+	
 	public boolean isVisible(){
 		return visible;
 	}
@@ -76,7 +67,6 @@ public class Stick extends MouseAdapter{
 	public Square getB(){
 		return B;
 	}
-
 	
 	public void setX(int x){
 		X = x;
@@ -115,27 +105,5 @@ public class Stick extends MouseAdapter{
 	public StickMouseAdapter getMouseAdapter(){
 		return sma;
 	}
-/*
-	//Hover stuff
-	@Override
-	public void mouseMoved(MouseEvent e){
-		//87 145
-		if((e.getX() >= this.getX() && e.getX() <= (this.getX() + XLength)) && 
-				(e.getY() >= this.getY() && e.getY() <= (this.getY() + YLength))){
-			System.out.println("Stick: " + this.getX() + ","+this.getY());
-		}
-
-		//System.out.println("Entered " + e.getX() + " , " + e.getY() + " for stick: " + this.getX() + ", " + this.getY());
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e){
-		if((e.getX() >= this.getX() && e.getX() <= (this.getX() + XLength)) && 
-				(e.getY() >= this.getY() && e.getY() <= (this.getY() + YLength))){
-			System.out.println("Stick placed!! " + this.getX() + "," + this.getY());
-			place();
-			System.out.println(visible);
-		}
-	}*/
 }
 

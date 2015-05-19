@@ -1,7 +1,5 @@
 package main;
 
-import java.awt.image.*;
-import java.awt.*;
 import java.awt.event.*;
 
 import javax.imageio.ImageIO;
@@ -51,7 +49,7 @@ public class Menu {
 	}
 
 	public void setComponent(){ //SticksAndBoxes.png
-		imageComponent = new PictureCreateClass("Sticks600.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
+		imageComponent = new PictureCreateClass("Sticks800.png",0,0); //"/home/pettea/git/Project-SaB/SAB-Project/"
 	}
 
 	public PictureCreateClass getComponent(){
@@ -63,13 +61,11 @@ public class Menu {
 	}
 
 	public void options(){
-
 		frame.getContentPane().removeAll();
 		frame.setContentPane(new PictureCreateClass("Universe.png",0,0));
 		frame.revalidate();
 		frame.repaint();		
 	}
-
 
 	public void exitGame(){
 		System.exit(1);

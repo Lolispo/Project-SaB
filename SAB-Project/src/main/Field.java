@@ -64,6 +64,7 @@ public class Field {
 			for(int j = 0; j<amountRow; j++){
 				planets[i][j] = new Square();
 				planets[i][j].setCoordinates(i,j);
+				//System.out.println("Planet coordinates: " + planets[i][j].getX() + "," + planets[i][j].getY());
 				planets[i][j].saveCurrentImage(new PictureCreateClass("planet4.png",planets[i][j].getX(),planets[i][j].getY()));
 				imageP.add(planets[i][j].getPic());					
 				frame.revalidate();
@@ -110,19 +111,31 @@ public class Field {
 						if(innerStick.getX() == A.getX()){
 							localX = A.getX();
 							if(A.getY() < innerStick.getY()){
-								localY = A.getY() - (innerStick.getY() - A.getY()) ;
+							/*
+							System.out.println("Setting up stuff:\n" +
+							"Circle coordinates: "+A.getX() + "," + A.getY() + " (" 
+										+ A.getCentralX()+","+A.getCentralY()+")\n"
+										+ "(Innerstick = "+innerStick.getY()+")");
+										*/
+								localY = A.getCentralY() - A.getYLength();
+								//System.out.println("localX o Y = " + localX + "," + localY);
+								
+								//localY = A.getY() - (innerStick.getY() - A.getY()) ;
 							}
 							else if(A.getY() > innerStick.getY()){
-								localY = A.getY() + (A.getY() - innerStick.getY());
+								localY = A.getY() + A.getYLength();
+								//localY = A.getY() + (A.getY() - innerStick.getY());
 							}
 						}
 						else if(innerStick.getY() == A.getY()){
 							localY = A.getY();
 							if(A.getX() < innerStick.getX()){
-								localX = A.getX() - (innerStick.getX() - A.getX());
+								localX = A.getCentralX() - A.getXLength();
+								//localX = A.getX() - (innerStick.getX() - A.getX());
 							}
 							else if(A.getX() > innerStick.getX()){
-								localX = A.getX() + (A.getX() - innerStick.getX());
+								localX = A.getX() + A.getXLength();
+								//localX = A.getX() + (A.getX() - innerStick.getX());
 							}
 						}
 						boolean alreadyExists = false;
@@ -143,24 +156,28 @@ public class Field {
 			else if(A.getX() == B.getX()){ // Other sticks between planets
 				stick.setX(A.getX());
 				if(A.getY() < B.getY()){
-					stick.setY((B.getY() - A.getY())/2 + A.getY());
+					stick.setY(A.getY() + A.getYLength());
+					//stick.setY((B.getY() - A.getY())/2 + A.getY());
 				}
 				else if(B.getY() < A.getY()){
-					stick.setY((A.getY() - B.getY())/2 + B.getY());
+					stick.setY(B.getY() + B.getYLength());
+					//stick.setY((A.getY() - B.getY())/2 + B.getY());
 				}
 			}
 			else if(A.getY() == B.getY()){
 				stick.setY(A.getY());
 				if(A.getX() < B.getX()){
-					stick.setX((B.getX() - A.getX())/2 + A.getX());
+					stick.setX(A.getX() + A.getXLength());
+					//stick.setX((B.getX() - A.getX())/2 + A.getX());
 				}
 				else if(B.getX() < A.getX()){
-					stick.setX((A.getX() - B.getX())/2 + B.getX());
+					stick.setX(B.getX() + B.getXLength());
+					//stick.setX((A.getX() - B.getX())/2 + B.getX());
 				}
 			}
 
 			if(stick.getX() != 0){
-
+				stick.setSideways();
 				if (stick.getA().getX() == stick.getX()){
 					stick.saveCurrentImage(new PictureCreateClass("LandingArea.png",stick.getX(),stick.getY()));
 				}
@@ -172,13 +189,11 @@ public class Field {
 				frame.addMouseListener(sma);
 				stick.setMouseAdapter(sma);
 
-
 				frame.revalidate();
 				frame.repaint();
 			}
 		}
 	}
-
 
 	public ArrayList<Square> checkIfSurroundend(){
 		ArrayList<Square> surroundedSquares = new ArrayList<Square>(); 
@@ -197,7 +212,6 @@ public class Field {
 			}
 		}
 		return surroundedSquares;
-
 	}
 
 	public boolean checkIfGameOver(){
