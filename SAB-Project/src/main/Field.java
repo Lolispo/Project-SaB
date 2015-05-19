@@ -3,6 +3,7 @@ package main;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
+
 import java.awt.event.*;
 
 public class Field {
@@ -20,7 +21,8 @@ public class Field {
 	private JLabel[] scoreLabel;
 	private JPanel panel;
 	private JLabel turnLabel;
-
+	private JLabel planetLabel;
+	
 	public Field(int amountRow, JFrame frame, Player[] playerArr){
 		this.frame = frame;
 		currentPlayer = 0;
@@ -31,7 +33,8 @@ public class Field {
 		circles = amountRow * amountRow;
 		scoreLabel = new JLabel[players.length];
 		turnLabel = new JLabel();
-
+		planetLabel = new JLabel();
+		
 		setBackground();
 		planets = makePlanets();
 		makeSticks();
@@ -41,19 +44,32 @@ public class Field {
 
 	public void setBackground(){
 		frame.getContentPane().removeAll();
-		imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
+		imageP = new ImagePanel(new PictureCreateClass(URLs.BACKGROUND,0,0).getImage());
 		frame.getContentPane().add(imageP, BorderLayout.CENTER);
+
+		JPanel outside = new JPanel();
 		panel = new JPanel();
+
+		outside.setLayout(new BoxLayout(outside, BoxLayout.LINE_AXIS));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS)); //new GridLayout());
+		outside.add(Box.createHorizontalStrut(550));
+		outside.add(panel);
+		panel.setBackground(Color.BLACK);
 		panel.add(turnLabel);
+		panel.add(planetLabel);
+		panel.add(Box.createVerticalStrut(20));
+
 		for(int i = 0; i < scoreLabel.length; i++){
 			String score = players[i].getName()+": "+players[i].getPoints()+" points";
 			scoreLabel[i] = new JLabel(score);
+			scoreLabel[i].setFont(new Font("Serif", Font.BOLD, 20));
+			scoreLabel[i].setForeground(Color.WHITE);
 			panel.add(scoreLabel[i]);
+			panel.add(Box.createVerticalStrut(5));
 		}
 		showPlayerTurn();
 		printScores();
-		panel.setForeground(Color.WHITE);
-		imageP.add(panel);
+		imageP.add(outside);
 		frame.repaint();
 		frame.revalidate();
 	}
@@ -66,7 +82,7 @@ public class Field {
 				planets[i][j] = new Circle();
 				planets[i][j].setCoordinates(i,j);
 				//System.out.println("Planet coordinates: " + planets[i][j].getX() + "," + planets[i][j].getY());
-				planets[i][j].saveCurrentImage(new PictureCreateClass("planet4.png",planets[i][j].getX(),planets[i][j].getY()));
+				planets[i][j].saveCurrentImage(new PictureCreateClass(URLs.DEFAULT_CIRCLE,planets[i][j].getX(),planets[i][j].getY()));
 				imageP.add(planets[i][j].getPic());					
 				frame.revalidate();
 				frame.repaint();
@@ -112,15 +128,15 @@ public class Field {
 						if(innerStick.getX() == A.getX()){
 							localX = A.getX();
 							if(A.getY() < innerStick.getY()){
-							/*
+								/*
 							System.out.println("Setting up stuff:\n" +
 							"Circle coordinates: "+A.getX() + "," + A.getY() + " (" 
 										+ A.getCentralX()+","+A.getCentralY()+")\n"
 										+ "(Innerstick = "+innerStick.getY()+")");
-										*/
+								 */
 								localY = A.getCentralY() - A.getYLength();
 								//System.out.println("localX o Y = " + localX + "," + localY);
-								
+
 								//localY = A.getY() - (innerStick.getY() - A.getY()) ;
 							}
 							else if(A.getY() > innerStick.getY()){
@@ -180,10 +196,10 @@ public class Field {
 			if(stick.getX() != 0){
 				stick.setSideways();
 				if (stick.getA().getX() == stick.getX()){
-					stick.saveCurrentImage(new PictureCreateClass("LandingArea.png",stick.getX(),stick.getY()));
+					stick.saveCurrentImage(new PictureCreateClass(URLs.PLACE_HORIZONTAL,stick.getX(),stick.getY()));
 				}
 				else{
-					stick.saveCurrentImage(new PictureCreateClass("LandingAreaShifted.png",stick.getX(),stick.getY()));
+					stick.saveCurrentImage(new PictureCreateClass(URLs.PLACE_VERTICAL,stick.getX(),stick.getY()));
 				}
 				imageP.add(stick.getPic());
 				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
@@ -229,10 +245,10 @@ public class Field {
 	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
 		if (stick.getA().getX() == stick.getX()){
-			stick.saveCurrentImage(new PictureCreateClass("mainShipShift.png",stick.getX(),stick.getY()));
+			stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_HORIZONTAL,stick.getX(),stick.getY()));
 		}
 		else{
-			stick.saveCurrentImage(new PictureCreateClass("mainShip.png",stick.getX(),stick.getY()));
+			stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_VERTICAL,stick.getX(),stick.getY()));
 		}
 		imageP.add(stick.getPic());
 		frame.revalidate();
@@ -256,17 +272,68 @@ public class Field {
 	}
 
 	public void showPlayerTurn(){
-		turnLabel.setText("Current turn: " + players[currentPlayer].getName());
+		String labelText = "<html><font color='white'>Current turn: <font color='" + 
+				players[currentPlayer].getColor()+"'>" + 
+				players[currentPlayer].getName() + "</font></html>";
+		turnLabel.setText(labelText);
+		turnLabel.setFont(new Font("Serif", Font.BOLD, 30));
+		turnLabel.setForeground(Color.WHITE);
+		PictureCreateClass miniPlanet = new PictureCreateClass(players[currentPlayer].getURL(),700,700);
+		Image image =  miniPlanet.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+		ImageIcon icon = new ImageIcon(image);
+		planetLabel.setIcon(icon);
 	}
-	
+
 	public void repaintVictory(){
 		frame.getContentPane().remove(imageP);
-		frame.setSize(1500, 844);
+		//frame.setSize(1500, 844);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Something for max frame instead of fixed
-		imageP = new ImagePanel(new PictureCreateClass("Exterminatus.png",0,0).getImage());
+		imageP = new ImagePanel(new PictureCreateClass(URLs.EXIT_SCREEN,0,0).getImage());
 		frame.getContentPane().add(imageP, BorderLayout.CENTER);
+		StringBuilder winningPlayerName = new StringBuilder();
+		winningPlayerName.append(players[0].getName());
+		int leadingScore = players[0].getPoints();
+		for(int i = 1; i < players.length; i++){
+			if(players[i].getPoints() == leadingScore){
+				winningPlayerName.append(" and " + players[i].getName());
+			}
+			else if(players[i].getPoints() > leadingScore){
+				winningPlayerName = new StringBuilder();
+				winningPlayerName.append(players[i].getName());
+				leadingScore = players[i].getPoints();
+			}
+		}
+		JLabel winner = new JLabel("Winner is " + winningPlayerName.toString() + "!");
+		winner.setForeground(Color.WHITE);
+		winner.setFont(new Font("Serif", Font.BOLD, 30));
+		imageP.add(winner);
 		frame.revalidate();
 		frame.repaint();
+		MouseAdapter mouseListener = new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				removeMouseListener();
+				Object[] options = { "Rematch", "Exit" };
+				int yourChoice = JOptionPane.showOptionDialog(null, "Continue playing or Exit?", "Exit?",
+						JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION,
+						null, options, options[0]);
+				switch(yourChoice){
+				case 0: 
+					new PlayerStatsScreen(frame);
+					break;
+				case 1:
+					System.exit(1);
+				}
+			}
+		};
+		frame.addMouseListener(mouseListener);
+
+	}
+
+	public void removeMouseListener(){
+		MouseListener[] x = frame.getMouseListeners();
+		for(MouseListener m : x){
+			frame.removeMouseListener(m);
+		}
 	}
 
 	public void printScores(){		
@@ -275,7 +342,7 @@ public class Field {
 			scoreLabel[i].setText(score);
 		}
 	}
-	
+
 	public int getAmountRow(){
 		return amountRow;
 	}

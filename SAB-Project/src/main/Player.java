@@ -9,6 +9,7 @@ public class Player {
 	private String name;
 	private int points;
 	private String URL;
+	private String HTMLcolor;
 	
 	public Player(){
 
@@ -44,4 +45,11 @@ public class Player {
 		return URL;
 	}
 
+	public void setColor(String color){
+		this.HTMLcolor = color;
+	}
+	
+	public String getColor(){
+		return HTMLcolor;
+	}
 }

@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 /**
@@ -34,24 +35,8 @@ public class Main {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		
 		Menu m = new Menu(frame);
-		frame.getContentPane().add(m.getComponent());
-		frame.validate();
-		frame.repaint();
+		m.makeMenu();
 		
-		JButton[] buttons = m.getButtons();
-		frame.setLayout(new BorderLayout());
-
-		JPanel panelButtons = new JPanel();
-		for(JButton button : buttons){
-			panelButtons.add(button);
-		}
-		panelButtons.setBackground(Color.BLACK);
-		frame.add(panelButtons, BorderLayout.SOUTH);
-		//frame.add(panelButtons, BorderLayout.CENTER);
-		frame.revalidate();
-		frame.repaint();
 	}
-
 }

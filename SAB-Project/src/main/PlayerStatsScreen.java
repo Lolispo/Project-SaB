@@ -9,14 +9,10 @@ import java.util.*;
 public class PlayerStatsScreen {
 
 	private JFrame frame;
-	private JFrame tempFrame;
-	private ImagePanel imageP;
 	private JPanel outerPanel;
 	private JPanel panel;
 	private int amountPlayers;
 	private Player[] players;
-	private String[] URLs;
-	private static final int AMOUNT_PLANETS = 4;
 	private JTextField[] text; //final
 
 	public PlayerStatsScreen(JFrame frame){
@@ -24,17 +20,11 @@ public class PlayerStatsScreen {
 
 		String[] numberList = {"2","3","4"};
 		frame.getContentPane().removeAll();
-		//frame.setContentPane(new PictureCreateClass("Universe.png",0,0));
+		
 		outerPanel = new JPanel();		
 		outerPanel.setLayout(new FlowLayout()); 
 		frame.revalidate();
 		frame.repaint();
-
-		URLs = new String[AMOUNT_PLANETS];
-		URLs[0] = ("planet1.png");
-		URLs[1] = ("planet2.png");
-		URLs[2] = ("planet3.png");
-		URLs[3] = ("planet5.png");
 
 		//Create the combo box, select item at index 4.
 		//Indices start at 0, so 4 specifies the pig.
@@ -72,6 +62,15 @@ public class PlayerStatsScreen {
 			text[i] = new JTextField("",10);
 			panel.add(name);
 			panel.add(text[i]);
+			/*final JButton b = new JButton("Color");
+			b.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					Color c = JColorChooser.showDialog(null, "Choose a Color", b.getForeground());
+					if (c != null)
+						b.setForeground(c);
+				}
+			});
+			panel.add(b);*/
 		}
 		JLabel space = new JLabel("             ");
 		space.setForeground(Color.BLACK);
@@ -97,20 +96,21 @@ public class PlayerStatsScreen {
 		for(int i = 0; i < amount; i++){
 			players[i] = new Player();
 			players[i].setName(text[i].getText());
-			players[i].setURL(URLs[i % AMOUNT_PLANETS]);
+			players[i].setURL(URLs.CIRCLES[i % URLs.AMOUNT_PLANETS]);
+			players[i].setColor(URLs.COLORS[i % URLs.AMOUNT_PLANETS]);
 		}
 		String[] amountCircles = {"2","3"};
-		
+
 		JComboBox amountOfCirclesList = new JComboBox(amountCircles);
 		amountOfCirclesList.setSelectedIndex(0);
-			
+
 		JLabel amountOfCircles = new JLabel("Give the amount of circles in each row");
 		amountOfCircles.setForeground(Color.WHITE);
 		panel.add(amountOfCircles);
 		panel.add(amountOfCirclesList);
 		frame.revalidate();
 		frame.repaint();
-		
+
 		amountOfCirclesList.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JComboBox cb = (JComboBox)e.getSource();
@@ -127,27 +127,4 @@ public class PlayerStatsScreen {
 	public int getAmountPlayers(){
 		return amountPlayers;
 	}
-	
-
-	/*
-	amountPlayers = Integer.parseInt(JOptionPane.showInputDialog("Give the amount of players"));
-
-	tempFrame = new JFrame();
-	tempFrame.setSize(150, 200);
-	tempFrame.setTitle("Sticks and Boxes");
-	tempFrame.setVisible(true);
-	tempFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	tempFrame.setResizable(false);
-
-	tempFrame.setBackground(Color.BLACK);
-	//tempFrame.getContentPane().removeAll();
-	//imageP = new ImagePanel(new PictureCreateClass("Universe.png",0,0).getImage());
-	//tempFrame.getContentPane().add(imageP);
-	panel = new JPanel();
-	panel.setLayout(new FlowLayout());
-	tempFrame.add(panel);
-	tempFrame.revalidate();
-	tempFrame.repaint();
-	 */
-	//URLs[3] = ("planet4.png");
 }
