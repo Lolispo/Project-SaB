@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 public class Field {
 
-	private int circles;
+	private int amountCircles;
 	private Circle[][] planets;
 	private int amountRow;
 	private ArrayList<Stick> sticks;
@@ -30,13 +30,13 @@ public class Field {
 		taken = new ArrayList<Circle>();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
-		circles = amountRow * amountRow;
+		amountCircles = amountRow * amountRow;
 		scoreLabel = new JLabel[players.length];
 		turnLabel = new JLabel();
 		planetLabel = new JLabel();
 		
 		setBackground();
-		planets = makePlanets();
+		planets = createCircles();
 		makeSticks();
 		drawSticks();
 
@@ -74,21 +74,9 @@ public class Field {
 		frame.revalidate();
 	}
 
-	public Circle[][] makePlanets(){
-
-		planets = new Circle[amountRow][amountRow];
-		for(int i = 0; i < amountRow; i++){
-			for(int j = 0; j<amountRow; j++){
-				planets[i][j] = new Circle();
-				planets[i][j].setCoordinates(i,j);
-				//System.out.println("Planet coordinates: " + planets[i][j].getX() + "," + planets[i][j].getY());
-				planets[i][j].saveCurrentImage(new PictureCreateClass(URLs.DEFAULT_CIRCLE,planets[i][j].getX(),planets[i][j].getY()));
-				imageP.add(planets[i][j].getPic());					
-				frame.revalidate();
-				frame.repaint();
-			}
-		}
-		return planets;
+	public Circle[][] createCircles(){
+		CircleCreator circle = new CircleCreator(amountRow,frame,imageP);
+		return circle.makeCircles();
 	}
 
 	public void makeSticks(){
@@ -106,7 +94,6 @@ public class Field {
 						|| (i==amountRow-1 && j == 0) || (i==amountRow-1 && j == amountRow-1)){
 					sticks.add(new Stick(planets[i][j]));
 					sticks.add(new Stick(planets[i][j]));
-
 				}
 				while(planets[i][j].nmbSticks()<4){
 					sticks.add(new Stick(planets[i][j]));
@@ -116,103 +103,7 @@ public class Field {
 	}
 
 	public void drawSticks(){
-
-		for(final Stick stick : sticks){
-			Circle A = stick.getA();
-			Circle B = stick.getB();
-			if(A.getX() == B.getX() && A.getY() == B.getY()){ // Kollar sig själv
-				for(Stick innerStick : A.getSticks()){
-					if(innerStick.getX() != 0 && innerStick.getY() != 0){
-						int localX = 0;
-						int localY = 0;
-						if(innerStick.getX() == A.getX()){
-							localX = A.getX();
-							if(A.getY() < innerStick.getY()){
-								/*
-							System.out.println("Setting up stuff:\n" +
-							"Circle coordinates: "+A.getX() + "," + A.getY() + " (" 
-										+ A.getCentralX()+","+A.getCentralY()+")\n"
-										+ "(Innerstick = "+innerStick.getY()+")");
-								 */
-								localY = A.getCentralY() - A.getYLength();
-								//System.out.println("localX o Y = " + localX + "," + localY);
-
-								//localY = A.getY() - (innerStick.getY() - A.getY()) ;
-							}
-							else if(A.getY() > innerStick.getY()){
-								localY = A.getY() + A.getYLength();
-								//localY = A.getY() + (A.getY() - innerStick.getY());
-							}
-						}
-						else if(innerStick.getY() == A.getY()){
-							localY = A.getY();
-							if(A.getX() < innerStick.getX()){
-								localX = A.getCentralX() - A.getXLength();
-								//localX = A.getX() - (innerStick.getX() - A.getX());
-							}
-							else if(A.getX() > innerStick.getX()){
-								localX = A.getX() + A.getXLength();
-								//localX = A.getX() + (A.getX() - innerStick.getX());
-							}
-						}
-						boolean alreadyExists = false;
-						for(Stick moreInnerStick : A.getSticks()){
-							if(moreInnerStick.getX() == localX && moreInnerStick.getY() == localY){
-								alreadyExists = true;
-								break;
-							}
-						}
-						if(!alreadyExists){ // Om den inte finns
-							stick.setX(localX);
-							stick.setY(localY);
-							break;
-						}
-					}
-				}
-			}
-			else if(A.getX() == B.getX()){ // Other sticks between planets
-				stick.setX(A.getX());
-				if(A.getY() < B.getY()){
-					stick.setY(A.getY() + A.getYLength());
-					//stick.setY((B.getY() - A.getY())/2 + A.getY());
-				}
-				else if(B.getY() < A.getY()){
-					stick.setY(B.getY() + B.getYLength());
-					//stick.setY((A.getY() - B.getY())/2 + B.getY());
-				}
-			}
-			else if(A.getY() == B.getY()){
-				stick.setY(A.getY());
-				if(A.getX() < B.getX()){
-					stick.setX(A.getX() + A.getXLength());
-					//stick.setX((B.getX() - A.getX())/2 + A.getX());
-				}
-				else if(B.getX() < A.getX()){
-					stick.setX(B.getX() + B.getXLength());
-					//stick.setX((A.getX() - B.getX())/2 + B.getX());
-				}
-			}
-						
-			if(stick.getX() != 0){
-				stick.setSideways();
-				if (stick.getA().getX() == stick.getX()){
-					stick.saveCurrentImage(new PictureCreateClass(URLs.PLACE_HORIZONTAL,stick.getX(),stick.getY()));
-				}
-				else{
-					stick.saveCurrentImage(new PictureCreateClass(URLs.PLACE_VERTICAL,stick.getX(),stick.getY()));
-				}
-				imageP.add(stick.getPic());
-				
-		//		StickMouseAdapter sma = new 
-				
-				StickMouseAdapter sma = new StickMouseAdapter(stick, this);
-				frame.addMouseListener(sma);
-				stick.setMouseAdapter(sma);
-
-				frame.revalidate();
-				frame.repaint();
-			}
-		}
+		new StickInit(frame,sticks,imageP,this);
 	}
 
 	public ArrayList<Circle> checkIfSurroundend(){
@@ -225,7 +116,7 @@ public class Field {
 					imageP.remove(planets[i][j].getPic());
 					planets[i][j].saveCurrentImage(new PictureCreateClass(players[currentPlayer].getURL(),
 							planets[i][j].getX(),planets[i][j].getY()));
-					imageP.add(planets[i][j].getPic());					
+					imageP.add(planets[i][j].getPic());
 					frame.revalidate();
 					frame.repaint();
 				}
@@ -235,7 +126,7 @@ public class Field {
 	}
 
 	public boolean checkIfGameOver(){
-		if( taken.size() == circles){
+		if( taken.size() == amountCircles){
 			return true;
 		}
 		return false;
@@ -310,87 +201,7 @@ public class Field {
 	}
 
 	public void repaintVictory(){
-		frame.getContentPane().remove(imageP);
-		imageP = new ImagePanel(new PictureCreateClass(URLs.EXIT_SCREEN,0,0).getImage());
-		frame.getContentPane().add(imageP, BorderLayout.CENTER);
-		StringBuilder winningPlayerName = new StringBuilder();
-		winningPlayerName.append(players[0].getName());
-		int leadingScore = players[0].getPoints();
-		for(int i = 1; i < players.length; i++){
-			if(players[i].getPoints() == leadingScore){
-				winningPlayerName.append(" and " + players[i].getName());
-			}
-			else if(players[i].getPoints() > leadingScore){
-				winningPlayerName = new StringBuilder();
-				winningPlayerName.append(players[i].getName());
-				leadingScore = players[i].getPoints();
-			}
-		}
-		JLabel winner = new JLabel("<html><font color='white'>Winner is <font color='yellow'>" + 
-				winningPlayerName.toString() + "!</font></html>");
-		winner.setForeground(Color.WHITE);
-		winner.setFont(new Font("Serif", Font.BOLD, 30));
-		JPanel tempPanel = new JPanel();
-		tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.LINE_AXIS));
-		tempPanel.add(Box.createHorizontalStrut(200));
-		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new BoxLayout(innerPanel,BoxLayout.PAGE_AXIS));
-		innerPanel.setOpaque(false);
-		//innerPanel.add(Box.createVerticalStrut(200));
-		innerPanel.add(winner);
-		
-//		innerPanel.add(Box.createVerticalStrut(200));
-		
-		JButton Rematch = new JButton("Rematch");
-		JButton Exit = new JButton("Exit");
-		Rematch.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				new PlayerStatsScreen(frame);
-			}
-		});
-		Exit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				System.exit(1);
-			}
-		});
-		
-		innerPanel.add(Rematch);
-		innerPanel.add(Box.createVerticalStrut(5));
-		innerPanel.add(Exit);
-		
-		tempPanel.add(innerPanel);
-		
-		imageP.add(tempPanel);
-		frame.revalidate();
-		frame.repaint();
-		
-		/*
-		MouseAdapter mouseListener = new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				removeMouseListener();
-				Object[] options = { "Rematch", "Exit" };
-				int yourChoice = JOptionPane.showOptionDialog(null, "Continue playing or Exit?", "Exit?",
-						JOptionPane.DEFAULT_OPTION, JOptionPane.DEFAULT_OPTION,
-						null, options, options[0]);
-				switch(yourChoice){
-				case 0: 
-					new PlayerStatsScreen(frame);
-					break;
-				case 1:
-					System.exit(1);
-				}
-			}
-		};
-		
-		frame.addMouseListener(mouseListener);
-		*/
-	}
-
-	public void removeMouseListener(){
-		MouseListener[] x = frame.getMouseListeners();
-		for(MouseListener m : x){
-			frame.removeMouseListener(m);
-		}
+		new VictoryScreen(frame,imageP,players);
 	}
 
 	public void printScores(){		

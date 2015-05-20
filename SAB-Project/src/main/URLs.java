@@ -13,9 +13,8 @@ public class URLs {
 	public static String STICK_HORIZONTAL2= "stick2SideWays.png"; // 100x50
 	public static String STICK_VERTICAL3 = "ship2.png"; // 50x100
 	public static String STICK_HORIZONTAL3= "ship2Shift.png"; // 100x50
-	public static String STICK_VERTICAL4 = "ship4";
-	public static String STICK_HORIZONTAL4 = "ship4Sideways";
-	
+	public static String STICK_VERTICAL4 = "ship4.png";
+	public static String STICK_HORIZONTAL4 = "ship4Sideways.png";
 	public static String EXIT_SCREEN = "endScreen.png"; // 800x600
 	public static String[] CIRCLES = {"planet1.png", "planet2.png", "planet3.png", "planet5.png"}; // 100x100
 	public static final int AMOUNT_PLANETS = 4;
@@ -42,7 +41,6 @@ public class URLs {
 			STICK_HORIZONTAL3 = "ship2Shift.png";
 			STICK_VERTICAL4 = "ship4.png";
 			STICK_HORIZONTAL4 = "ship4Sideways.png";
-			
 			
 			EXIT_SCREEN = "endScreen.png";
 			String[] temp = {"planet1.png", "planet2.png", "planet3.png", "planet5.png"};
