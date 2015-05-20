@@ -14,6 +14,9 @@ public class URLs {
 	public static final int AMOUNT_PLANETS = 4;
 	public static final String[] COLORS = {"red", "green", "blue", "purple"};
 	
+	public static int currentTheme = 0;
+	
+	
 	public static void changeTheme(String choice){
 		switch(choice){
 		case "Space":
@@ -27,6 +30,7 @@ public class URLs {
 			EXIT_SCREEN = "endScreen.png";
 			String[] temp = {"planet1.png", "planet2.png", "planet3.png", "planet5.png"};
 			CIRCLES = temp;
+			currentTheme = 0;
 			break;
 		case "Original":
 			MENU = "OSticksMenu.png";
@@ -39,6 +43,7 @@ public class URLs {
 			EXIT_SCREEN = "Oend.png";
 			String[] temp2 = {"Obox.png", "Obox.png", "Obox.png", "Obox.png"};
 			CIRCLES = temp2;
+			currentTheme = 1;
 			break;
 		}
 	}

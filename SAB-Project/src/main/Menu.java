@@ -112,7 +112,7 @@ public class Menu {
 				
 		String[] Themes = {"Space", "Original"};
 		JComboBox themeList = new JComboBox(Themes);
-		themeList.setSelectedIndex(0);
+		themeList.setSelectedIndex(URLs.currentTheme);
 		JLabel theme = new JLabel("Choose what theme you want on the game: ");
 		theme.setForeground(Color.WHITE);
 		JPanel panel = new JPanel();
