@@ -248,10 +248,32 @@ public class Field {
 	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
 		if (stick.getA().getX() == stick.getX()){
-			stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_HORIZONTAL,stick.getX(),stick.getY()));
+			if(currentPlayer == 0){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_HORIZONTAL1,stick.getX(),stick.getY()));
+			}
+			else if (currentPlayer == 1){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_HORIZONTAL2,stick.getX(),stick.getY()));
+			}
+			else if(currentPlayer == 2){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_HORIZONTAL3,stick.getX(),stick.getY()));
+			}
+			else if(currentPlayer == 3){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_HORIZONTAL4,stick.getX(),stick.getY()));
+			}
 		}
 		else{
-			stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_VERTICAL,stick.getX(),stick.getY()));
+			if(currentPlayer == 0){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_VERTICAL1,stick.getX(),stick.getY()));
+			}
+			else if(currentPlayer == 1){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_VERTICAL2,stick.getX(),stick.getY()));
+			}
+			else if(currentPlayer == 2){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_VERTICAL3,stick.getX(),stick.getY()));
+			}
+			else if(currentPlayer == 3){
+				stick.saveCurrentImage(new PictureCreateClass(URLs.STICK_VERTICAL4,stick.getX(),stick.getY()));
+			}
 		}
 		imageP.add(stick.getPic());
 		frame.revalidate();

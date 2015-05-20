@@ -11,6 +11,7 @@ public class Player {
 	private String URL;
 	private String HTMLcolor;
 	
+	
 	public Player(){
 
 		points = 0;	
