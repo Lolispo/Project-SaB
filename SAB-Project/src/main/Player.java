@@ -1,21 +1,13 @@
 package main;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-
 public class Player {
 	private String name;
 	private int points;
 	private String URL;
 	private String HTMLcolor;
 	
-	
 	public Player(){
-
 		points = 0;	
-
 	}
 
 	public void addPoints(int p){
@@ -27,7 +19,6 @@ public class Player {
 	}
 
 	public int getPoints(){
-
 		return points;
 	}
 

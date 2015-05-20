@@ -2,8 +2,6 @@ package main;
 
 import javax.swing.*;
 
-import java.awt.*;
-
 /**
  * Skriva ut sticks, hur spara
  * Grafik:

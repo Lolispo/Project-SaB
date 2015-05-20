@@ -8,6 +8,7 @@ import javax.swing.*;
 
 public class PictureCreateClass extends JComponent{
 
+	private static final long serialVersionUID = 1L; //Warning fix
 	private BufferedImage image;
 	private String URL;
 	private int X;

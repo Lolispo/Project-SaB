@@ -3,7 +3,6 @@ package main;
 import java.awt.event.*;
 import java.awt.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Menu {
@@ -111,7 +110,7 @@ public class Menu {
 		outerPanel.setLayout(new FlowLayout()); 
 				
 		String[] Themes = {"Space", "Original"};
-		JComboBox themeList = new JComboBox(Themes);
+		JComboBox<String> themeList = new JComboBox<>(Themes);
 		themeList.setSelectedIndex(URLs.currentTheme);
 		JLabel theme = new JLabel("Choose what theme you want on the game: ");
 		theme.setForeground(Color.WHITE);
@@ -127,7 +126,8 @@ public class Menu {
 		
 		themeList.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JComboBox cb = (JComboBox)e.getSource();
+				@SuppressWarnings("unchecked") // I dono
+				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 				String themeChosen = (String)cb.getSelectedItem();
 				URLs.changeTheme(themeChosen);
 			}	

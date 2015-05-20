@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 public class PlayerStatsScreen {
 
@@ -28,7 +27,7 @@ public class PlayerStatsScreen {
 
 		//Create the combo box, select item at index 4.
 		//Indices start at 0, so 4 specifies the pig.
-		final JComboBox dropdownList = new JComboBox(numberList);
+		final JComboBox<String> dropdownList = new JComboBox<>(numberList);
 		dropdownList.setSelectedIndex(0);
 		//frame.getContentPane().add(dropdownList);
 		JLabel amountOfPlayers = new JLabel("Give the amount of players: ");
@@ -55,7 +54,8 @@ public class PlayerStatsScreen {
 		frame.repaint();
 		dropdownList.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JComboBox cb = (JComboBox)e.getSource();
+				@SuppressWarnings("unchecked")
+				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 				amountPlayers = Integer.parseInt((String)cb.getSelectedItem());
 				panel.remove(dropdownList);
 				setUpPlayers();
@@ -111,7 +111,7 @@ public class PlayerStatsScreen {
 		}
 		String[] amountCircles = {"2","3"};
 
-		JComboBox amountOfCirclesList = new JComboBox(amountCircles);
+		JComboBox<String> amountOfCirclesList = new JComboBox<>(amountCircles);
 		amountOfCirclesList.setSelectedIndex(0);
 
 		JLabel amountOfCircles = new JLabel("Give the amount of circles in each row");
@@ -123,7 +123,8 @@ public class PlayerStatsScreen {
 
 		amountOfCirclesList.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JComboBox cb = (JComboBox)e.getSource();
+				@SuppressWarnings("unchecked")
+				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 				int circleAmount = Integer.parseInt((String)cb.getSelectedItem());
 				new Field(circleAmount, frame, players);
 			}	
