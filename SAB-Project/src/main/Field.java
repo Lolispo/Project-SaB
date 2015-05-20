@@ -333,10 +333,38 @@ public class Field {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setLayout(new BoxLayout(tempPanel, BoxLayout.LINE_AXIS));
 		tempPanel.add(Box.createHorizontalStrut(200));
-		tempPanel.add(winner);
+		JPanel innerPanel = new JPanel();
+		innerPanel.setLayout(new BoxLayout(innerPanel,BoxLayout.PAGE_AXIS));
+		innerPanel.setOpaque(false);
+		//innerPanel.add(Box.createVerticalStrut(200));
+		innerPanel.add(winner);
+		
+//		innerPanel.add(Box.createVerticalStrut(200));
+		
+		JButton Rematch = new JButton("Rematch");
+		JButton Exit = new JButton("Exit");
+		Rematch.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				new PlayerStatsScreen(frame);
+			}
+		});
+		Exit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.exit(1);
+			}
+		});
+		
+		innerPanel.add(Rematch);
+		innerPanel.add(Box.createVerticalStrut(5));
+		innerPanel.add(Exit);
+		
+		tempPanel.add(innerPanel);
+		
 		imageP.add(tempPanel);
 		frame.revalidate();
 		frame.repaint();
+		
+		/*
 		MouseAdapter mouseListener = new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				removeMouseListener();
@@ -353,8 +381,9 @@ public class Field {
 				}
 			}
 		};
+		
 		frame.addMouseListener(mouseListener);
-
+		*/
 	}
 
 	public void removeMouseListener(){

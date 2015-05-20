@@ -13,7 +13,6 @@ public class URLs {
 	public static String STICK_HORIZONTAL2= "stick2SideWays.png"; // 100x50
 	public static String STICK_VERTICAL3 = "ship2.png"; // 50x100
 	public static String STICK_HORIZONTAL3= "ship2Shift.png"; // 100x50
-	
 	public static String STICK_VERTICAL4 = "ship4";
 	public static String STICK_HORIZONTAL4 = "ship4Sideways";
 	
