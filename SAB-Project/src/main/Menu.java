@@ -31,7 +31,7 @@ public class Menu {
 		JPanel panelButtons = new JPanel();
 
 		outside.setLayout(new BoxLayout(outside, BoxLayout.LINE_AXIS));
-		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.PAGE_AXIS)); //new GridLayout());
+		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.PAGE_AXIS)); 
 		outside.add(Box.createHorizontalStrut(300));
 		outside.add(panelButtons);
 		outside.add(Box.createHorizontalStrut(300));
@@ -78,10 +78,6 @@ public class Menu {
 				exitGame();
 			}
 		});
-
-		play.setPreferredSize(new Dimension(400,200));
-		options.setPreferredSize(new Dimension(200,200));
-		exit.setPreferredSize(new Dimension(200,200));
 		buttonStorage[0] = play;
 		buttonStorage[1] = options;
 		buttonStorage[2] = exit;		
@@ -109,8 +105,7 @@ public class Menu {
 		JPanel outerPanel = new JPanel();		
 		outerPanel.setLayout(new FlowLayout()); 
 				
-		String[] Themes = {"Space", "Original"};
-		JComboBox<String> themeList = new JComboBox<>(Themes);
+		JComboBox<String> themeList = new JComboBox<>(URLs.THEMES);
 		themeList.setSelectedIndex(URLs.currentTheme);
 		JLabel theme = new JLabel("Choose what theme you want on the game: ");
 		theme.setForeground(Color.WHITE);
@@ -126,7 +121,7 @@ public class Menu {
 		
 		themeList.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				@SuppressWarnings("unchecked") // I dono
+				@SuppressWarnings("unchecked") 
 				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 				String themeChosen = (String)cb.getSelectedItem();
 				URLs.changeTheme(themeChosen);

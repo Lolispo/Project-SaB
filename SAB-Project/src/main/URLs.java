@@ -20,6 +20,8 @@ public class URLs {
 	public static final int AMOUNT_PLANETS = 4;
 	public static final String[] COLORS = {"red", "green", "blue", "purple"};
 	
+	public static String[] THEMES = {"Space", "Original"};	
+	
 	public static int currentTheme = 0;
 	
 	

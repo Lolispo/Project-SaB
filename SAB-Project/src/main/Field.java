@@ -43,8 +43,9 @@ public class Field {
 	public void setBackground(){
 		frame.getContentPane().removeAll();
 		imageP = new ImagePanel(new PictureCreateClass(URLs.BACKGROUND,0,0).getImage());
-		frame.getContentPane().add(imageP, BorderLayout.CENTER);
-
+		frame.getContentPane().add(imageP);
+		frame.getContentPane().setPreferredSize(new Dimension(800,600));
+		
 		JPanel outside = new JPanel();
 		panel = new JPanel();
 

@@ -30,7 +30,7 @@ public class PlayerStatsScreen {
 		final JComboBox<String> dropdownList = new JComboBox<>(numberList);
 		dropdownList.setSelectedIndex(0);
 		//frame.getContentPane().add(dropdownList);
-		JLabel amountOfPlayers = new JLabel("Give the amount of players: ");
+		final JLabel amountOfPlayers = new JLabel("Give the amount of players: ");
 		amountOfPlayers.setForeground(Color.WHITE);
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -58,12 +58,13 @@ public class PlayerStatsScreen {
 				JComboBox<String> cb = (JComboBox<String>)e.getSource();
 				amountPlayers = Integer.parseInt((String)cb.getSelectedItem());
 				panel.remove(dropdownList);
-				setUpPlayers();
+				amountOfPlayers.setText("Type the player names");
+				setUpPlayers(amountOfPlayers);
 			}	
 		});
 	}
 
-	public void setUpPlayers(){
+	public void setUpPlayers(final JLabel amountOfPlayers){
 		players = new Player[amountPlayers];
 		text = new JTextField[amountPlayers];
 		for(int i = 0; i < amountPlayers; i++){
@@ -82,14 +83,15 @@ public class PlayerStatsScreen {
 			});
 			panel.add(b);*/
 		}
-		JLabel space = new JLabel("             ");
-		space.setForeground(Color.BLACK);
-		panel.add(space);
+		//JLabel space = new JLabel("             ");
+		//space.setForeground(Color.BLACK);
+		panel.add(Box.createVerticalStrut(100));
 		final JButton done = new JButton("Start Game");
 		done.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				startButton();
 				panel.remove(done);
+				panel.remove(amountOfPlayers);
 			}
 		});
 		panel.add(done,BorderLayout.SOUTH);
