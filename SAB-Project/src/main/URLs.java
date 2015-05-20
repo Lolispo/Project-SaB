@@ -20,7 +20,8 @@ public class URLs {
 	public static final int AMOUNT_PLANETS = 4;
 	public static final String[] COLORS = {"red", "green", "blue", "purple"};
 	
-	public static String[] THEMES = {"Space", "Original"};	
+	public static String[] THEMES = {"Space", "Original", "Basic"};	
+	public static String INSTRUCTIONS = "Instructions.png";
 	
 	public static int currentTheme = 0;
 	
@@ -66,6 +67,26 @@ public class URLs {
 			String[] temp2 = {"Obox.png", "Obox.png", "Obox.png", "Obox.png"};
 			CIRCLES = temp2;
 			currentTheme = 1;
+			break;
+		case "Basic":
+			MENU = "BSticks.png";
+			BACKGROUND = "Bbakgrund.png";
+			DEFAULT_CIRCLE = "Bbox2.png";
+			PLACE_HORIZONTAL = "BLandHori.png";
+			PLACE_VERTICAL = "BLandVerti.png";
+			STICK_VERTICAL1 = "BStickVerti.png";
+			STICK_HORIZONTAL1 = "BStickHori.png";
+			STICK_VERTICAL2 = "BStickVerti.png";
+			STICK_HORIZONTAL2 = "BStickHori.png";
+			STICK_VERTICAL3 = "BStickVerti.png";
+			STICK_HORIZONTAL3 = "BStickHori.png";
+			STICK_VERTICAL4 = "BStickVerti.png";
+			STICK_HORIZONTAL4 = "BStickHori.png";
+			
+			EXIT_SCREEN = "BendScreen.png";
+			String[] temp3 = {"Bbox.png", "Bbox.png", "Bbox.png", "Bbox.png"};
+			CIRCLES = temp3;
+			currentTheme = 2;
 			break;
 		}
 	}

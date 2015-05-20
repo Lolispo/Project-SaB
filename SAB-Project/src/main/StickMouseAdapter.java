@@ -42,8 +42,8 @@ public class StickMouseAdapter extends MouseAdapter{
 		if((e.getX() >= stickX && e.getX() <= (stickX + stick.getXLength())) && 
 				(e.getY() >= stickY && e.getY() <= (stickY + stick.getYLength()))){
 		
-			System.out.println(e.getX() + "," + e.getY() + "\nStick: " + stick.getX() + "," + stick.getY()
-					+ "\nLength: "+stick.getXLength() + "," + stick.getYLength());
+		//	System.out.println(e.getX() + "," + e.getY() + "\nStick: " + stick.getX() + "," + stick.getY()
+			//		+ "\nLength: "+stick.getXLength() + "," + stick.getYLength());
 			stick.place();
 			field.clickUpdate(stick);
 			int pointsEarned =field.checkIfSurroundend().size();

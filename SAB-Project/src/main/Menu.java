@@ -113,7 +113,15 @@ public class Menu {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(theme);
 		panel.add(themeList);
+		
+		JLabel instructions = new JLabel();
+		PictureCreateClass instructionsP = new PictureCreateClass(URLs.INSTRUCTIONS,400,400);
+		Image image =  instructionsP.getImage();
+		ImageIcon icon = new ImageIcon(image);
+		instructions.setIcon(icon);
+		
 		outerPanel.add(panel);
+		outerPanel.add(instructions);
 		frame.add(outerPanel);
 		
 		panel.setBackground(Color.BLACK);
