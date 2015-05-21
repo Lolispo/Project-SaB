@@ -6,6 +6,7 @@ import javax.swing.*;
  * Main Class - starts the game
  * Sets the JFrame and creates a Menu object that makes the menu
  * 
+ * Credits to MillionthVector for the space art
  * @author Petter Andersson & Jonas Hongisto
  */
 public class Main {
