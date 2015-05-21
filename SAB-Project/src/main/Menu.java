@@ -5,6 +5,10 @@ import java.awt.*;
 
 import javax.swing.*;
 
+/**
+ * Creates the menu and their corresponding buttons
+ * 
+ */
 public class Menu {
 
 	private PictureCreateClass imageComponent;
@@ -14,18 +18,21 @@ public class Menu {
 	public Menu(JFrame frame){
 		this.frame = frame;
 		frame.getContentPane().removeAll();
-		setComponent();
+		setComponent(); // Sets the background image
 		buttonStorage = new JButton[3];
-		makeButtons();
+		makeButtons(); // Sets up buttons
 	}
 
+	/**
+	 * Makes the menu. Adds the buttons
+	 * Uses panels inside of panels and BoxLayout
+	 */
 	public void makeMenu(){
 
 		ImagePanel imageP = new ImagePanel(getComponent().getImage());
 		frame.getContentPane().add(imageP);
 		frame.validate();
 		frame.repaint();
-
 
 		JPanel outside = new JPanel();
 		JPanel panelButtons = new JPanel();
@@ -57,8 +64,9 @@ public class Menu {
 		frame.repaint();
 	}
 
-
-
+	/**
+	 * Sets up buttons
+	 */
 	public void makeButtons(){
 		JButton play = new JButton("Play");
 		play.addActionListener(new ActionListener(){
@@ -95,10 +103,14 @@ public class Menu {
 		return imageComponent;
 	}
 
-	public void goPlay(){
+	public void goPlay(){ // If play button is clicked
 		new PlayerStatsScreen(frame);
 	}
 
+	/**
+	 * Occurs when the options button is clicked
+	 * Gives the options to change the theme of the game
+	 */
 	public void options(){
 		frame.getContentPane().removeAll();
 		//frame.setContentPane(new PictureCreateClass(URLs.BACKGROUND,0,0));

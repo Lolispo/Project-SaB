@@ -16,6 +16,9 @@ public class Stick extends MouseAdapter{
 	private PictureCreateClass picture;
 	private StickMouseAdapter sma;
 
+	/**
+	 * Sticks adjacent to two circles, A and B
+	 */
 	public Stick(Circle A, Circle B) {
 		this.A = A;
 		this.B = B;
@@ -25,6 +28,10 @@ public class Stick extends MouseAdapter{
 		B.addStick(this);
 	}
 
+	/**
+	 * If a stick is only adjacent to one circle
+	 * @param A
+	 */
 	public Stick(Circle A){
 		this.A = A;
 		this.B = A;
@@ -32,6 +39,9 @@ public class Stick extends MouseAdapter{
 		A.addStick(this);
 	}
 
+	/**
+	 * Tries to place a stick, if it hasn't already been placed
+	 */
 	public void place(){
 		if(!chosen){
 			visible = true;
@@ -40,6 +50,9 @@ public class Stick extends MouseAdapter{
 		}
 	}
 
+	/**
+	 * Sets different sizes and images for vertical and horizontal sticks
+	 */
 	public void setSideways(){ //Sets before printed in field
 		if ((A.getX() == this.getX()) && (A.getY() != this.getY())){
 			sideways = true;	//Assigns true or false to the sideways field depending on the x coordinate of the A planet.

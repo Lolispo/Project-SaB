@@ -2,6 +2,8 @@ package main;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.*;
 
 public class Field {
@@ -23,23 +25,26 @@ public class Field {
 	
 	public Field(int amountRow, JFrame frame, Player[] playerArr){
 		this.frame = frame;
-		currentPlayer = 0;
 		players = playerArr;
 		taken = new ArrayList<Circle>();
 		sticks =  new ArrayList<Stick>();
 		this.amountRow = amountRow;
 		amountCircles = amountRow * amountRow;
 		scoreLabel = new JLabel[players.length];
+		currentPlayer = randomStartPlayer(players.length);
 		turnLabel = new JLabel();
 		planetLabel = new JLabel();
 		
-		setBackground();
-		planets = createCircles();
-		makeSticks();
-		drawSticks();
+		setBackground(); // Sets background
+		planets = createCircles(); // Adds circles
+		makeSticks(); // Makes sticks
+		drawSticks(); // Draw sticks
 
 	}
-
+	
+	/**
+	 * Sets up the background of the field together with the score to the right.
+	 */
 	public void setBackground(){
 		frame.getContentPane().removeAll();
 		imageP = new ImagePanel(new PictureCreateClass(URLs.BACKGROUND,0,0).getImage());
@@ -78,6 +83,9 @@ public class Field {
 		return circle.makeCircles();
 	}
 
+	/**
+	 * Creates the sticks so they can later be given coordinates and drawn
+	 */
 	public void makeSticks(){
 
 		for(int i = 0; i < amountRow; i++){
@@ -105,13 +113,18 @@ public class Field {
 		new StickInit(frame,sticks,imageP,this);
 	}
 
+	/**
+	 * Checks all the circles if they are all surrounded.
+	 * If they are, update their graphics
+	 * @return
+	 */
 	public ArrayList<Circle> checkIfSurroundend(){
-		ArrayList<Circle> surroundedSquares = new ArrayList<Circle>(); 
+		ArrayList<Circle> surroundedCircles = new ArrayList<Circle>(); 
 		for(int i = 0; i < amountRow; i++){
 			for(int j = 0; j<amountRow; j++){
 				if(planets[i][j].surrounded()==true && taken.contains(planets[i][j]) == false){
 					taken.add(planets[i][j]);
-					surroundedSquares.add(planets[i][j]);
+					surroundedCircles.add(planets[i][j]);
 					imageP.remove(planets[i][j].getPic());
 					planets[i][j].saveCurrentImage(new PictureCreateClass(players[currentPlayer].getURL(),
 							planets[i][j].getX(),planets[i][j].getY()));
@@ -121,9 +134,13 @@ public class Field {
 				}
 			}
 		}
-		return surroundedSquares;
+		return surroundedCircles;
 	}
 
+	/**
+	 * Returns true when amount of circles == the amount of circles taken
+	 * @return
+	 */
 	public boolean checkIfGameOver(){
 		if( taken.size() == amountCircles){
 			return true;
@@ -135,6 +152,10 @@ public class Field {
 		return clicked;
 	}
 
+	/**
+	 * Updates the graphics with placing the correct stick
+	 * @param stick that was clicked
+	 */
 	public void clickUpdate(Stick stick){
 		imageP.remove(stick.getPic());
 		if (stick.getA().getX() == stick.getX()){
@@ -171,6 +192,10 @@ public class Field {
 		frame.removeMouseListener(stick.getMouseAdapter());
 	}
 
+	/**
+	 * Change player when a turn was made and no points were achieved
+	 * If it's the last player, go to player 1
+	 */
 	public void changePlayer(){
 		if(currentPlayer == players.length-1){
 			currentPlayer = 0;
@@ -186,7 +211,7 @@ public class Field {
 		printScores();
 	}
 
-	public void showPlayerTurn(){
+	public void showPlayerTurn(){ // Updates scores
 		String labelText = "<html><font color='white'>Current turn: <font color='" + 
 				players[currentPlayer].getColor()+"'>" + 
 				players[currentPlayer].getName() + "</font></html>";
@@ -199,11 +224,11 @@ public class Field {
 		planetLabel.setIcon(icon);
 	}
 
-	public void repaintVictory(){
+	public void repaintVictory(){ // If a winner is found
 		new VictoryScreen(frame,imageP,players);
 	}
 
-	public void printScores(){		
+	public void printScores(){	// Updates scores	
 		for(int i = 0; i < scoreLabel.length; i++){
 			String score = players[i].getName()+": "+players[i].getPoints()+" points";
 			scoreLabel[i].setText(score);
@@ -212,5 +237,10 @@ public class Field {
 
 	public int getAmountRow(){
 		return amountRow;
+	}
+	
+	public int randomStartPlayer(int playerAmount){
+		Random r = new Random();
+		return r.nextInt(playerAmount);
 	}
 }

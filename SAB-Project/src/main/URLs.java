@@ -1,5 +1,11 @@
 package main;
 
+/**
+ * Holds the URL of different pictures
+ * Also holds the different themes for the game
+ * @author pettea
+ *
+ */
 public class URLs {
 	
 	public static String MENU = "SticksMain.png"; // 800x600

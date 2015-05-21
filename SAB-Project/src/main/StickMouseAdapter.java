@@ -30,20 +30,18 @@ public class StickMouseAdapter extends MouseAdapter{
 	public void mouseClicked(MouseEvent e){
 		clickWasMade(e);
 	}
+	
+	/**
+	 * Checks the mouse position when clicked and checks if it's
+	 *  in the sticks area.
+	 * If it is, checks if it can place the stick and if game is over
+	 * @param e
+	 */
 	public void clickWasMade(MouseEvent e){
 		int stickX = stick.getX();
-		int stickY;
-		if(field.getAmountRow() == 3){
-			stickY = stick.getY(); // + 25
-		}
-		else{
-			stickY = stick.getY();
-		}
+		int stickY = stick.getY();
 		if((e.getX() >= stickX && e.getX() <= (stickX + stick.getXLength())) && 
 				(e.getY() >= stickY && e.getY() <= (stickY + stick.getYLength()))){
-		
-		//	System.out.println(e.getX() + "," + e.getY() + "\nStick: " + stick.getX() + "," + stick.getY()
-			//		+ "\nLength: "+stick.getXLength() + "," + stick.getYLength());
 			stick.place();
 			field.clickUpdate(stick);
 			int pointsEarned =field.checkIfSurroundend().size();

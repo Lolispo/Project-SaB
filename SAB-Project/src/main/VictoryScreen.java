@@ -21,6 +21,9 @@ public class VictoryScreen {
 		setUp();
 	}
 	
+	/**
+	 * Adds background, winning text and rematch / exit button
+	 */
 	public void setUp(){
 		frame.getContentPane().remove(imageP);
 		imageP = new ImagePanel(new PictureCreateClass(URLs.EXIT_SCREEN,0,0).getImage());

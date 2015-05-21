@@ -2,9 +2,9 @@ package main;
 
 public class Player {
 	private String name;
-	private int points;
-	private String URL;
-	private String HTMLcolor;
+	private int points; 
+	private String URL; // The personal circle
+	private String HTMLcolor; // Color of the text
 	
 	public Player(){
 		points = 0;	

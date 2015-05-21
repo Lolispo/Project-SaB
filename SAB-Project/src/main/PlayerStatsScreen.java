@@ -5,6 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Initializes the players with names etc.
+ * Starts the game field from here
+ */
 public class PlayerStatsScreen {
 
 	private JFrame frame;
@@ -12,11 +16,18 @@ public class PlayerStatsScreen {
 	private JPanel panel;
 	private int amountPlayers;
 	private Player[] players;
-	private JTextField[] text; //final
+	private JTextField[] text; 
 
 	public PlayerStatsScreen(final JFrame frame){
 		this.frame = frame;
-
+		setUpDropdowns();
+	}
+	
+	/**
+	 * Setups a dropdown menu that you choose amount of players playing
+	 */
+	public void setUpDropdowns(){
+		
 		String[] numberList = {"2","3","4"};
 		frame.getContentPane().removeAll();
 		
@@ -24,9 +35,8 @@ public class PlayerStatsScreen {
 		outerPanel.setLayout(new FlowLayout()); 
 		frame.revalidate();
 		frame.repaint();
-
-		//Create the combo box, select item at index 4.
-		//Indices start at 0, so 4 specifies the pig.
+		
+		//JComboBox = Dropwdown list
 		final JComboBox<String> dropdownList = new JComboBox<>(numberList);
 		dropdownList.setSelectedIndex(0);
 		//frame.getContentPane().add(dropdownList);
@@ -74,6 +84,9 @@ public class PlayerStatsScreen {
 		});
 	}
 
+	/**
+	 * When amountOfPlayers is chosen, Name options are given.
+	 */
 	public void setUpPlayers(final JLabel amountOfPlayers){
 		players = new Player[amountPlayers];
 		text = new JTextField[amountPlayers];
@@ -83,18 +96,7 @@ public class PlayerStatsScreen {
 			text[i] = new JTextField("",10);
 			panel.add(name);
 			panel.add(text[i]);
-			/*final JButton b = new JButton("Color");
-			b.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					Color c = JColorChooser.showDialog(null, "Choose a Color", b.getForeground());
-					if (c != null)
-						b.setForeground(c);
-				}
-			});
-			panel.add(b);*/
 		}
-		//JLabel space = new JLabel("             ");
-		//space.setForeground(Color.BLACK);
 		panel.add(Box.createVerticalStrut(100));
 		final JButton done = new JButton("Start Game");
 		done.addActionListener(new ActionListener(){
@@ -109,6 +111,10 @@ public class PlayerStatsScreen {
 		frame.repaint();
 	}
 
+	/**
+	 * Sets up the players with their stats if startsbutton is clicked
+	 * Gives a final options to choose size of the table
+	 */
 	public void startButton(){
 		for(int i = 0; i < text.length; i++){
 			text[i].setEditable(false);
